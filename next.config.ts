@@ -27,6 +27,14 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'art.florenceegi.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'media.florenceegi.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.mypinata.cloud',
+      },
     ],
   },
   headers: async () => [
