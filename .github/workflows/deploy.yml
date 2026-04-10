@@ -29,15 +29,13 @@ jobs:
       - name: Deploy via SSM
         run: |
           BASE="/home/forge/creator-staging.florenceegi.com"
-          SCRIPT="cd $BASE && git pull origin main"
-          SCRIPT="$SCRIPT && npm ci && npm run build"
-          SCRIPT="$SCRIPT && pm2 restart creator-staging"
+          SCRIPT="cd $BASE && git pull origin main && npm ci && npm run build && pm2 restart creator-staging"
 
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids "${{ secrets.EC2_INSTANCE_ID }}" \
             --document-name "AWS-RunShellScript" \
             --timeout-seconds 600 \
-            --parameters commands=["sudo -u forge bash -lc '${SCRIPT}'"] \
+            --parameters '{"commands":["sudo -u forge bash -lc \"'"$SCRIPT"'\""]}' \
             --query "Command.CommandId" --output text)
 
           echo "SSM Command: $COMMAND_ID"
