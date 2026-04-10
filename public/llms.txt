@@ -1,0 +1,35 @@
+# Yuri Biagini — Artist Website
+# https://yuri-biagini.florenceegi.com
+
+> This is the official website of artist Yuri Biagini.
+> It is part of the FlorenceEGI ecosystem (florenceegi.com).
+
+## About
+Yuri Biagini is an artist. This website showcases their works,
+exhibitions, press coverage, and provides contact information.
+
+## Pages
+- /it/ — Home page (Italian, default)
+- /en/ — Home page (English)
+- /[locale]/works — Gallery of artworks
+- /[locale]/about — Artist biography and timeline
+- /[locale]/exhibitions — Past and upcoming exhibitions
+- /[locale]/press — Press coverage and articles
+- /[locale]/contact — Contact form
+
+## Languages
+Available in: Italian (it), English (en), French (fr),
+German (de), Spanish (es), Chinese (zh).
+
+## Artworks
+All artworks are certified on Algorand blockchain via FlorenceEGI.
+Each artwork links to art.florenceegi.com for purchase and
+blockchain verification details.
+
+## Contact
+Email: yuri@florenceegi.com
+Platform: art.florenceegi.com
+
+## Technical
+Built with Next.js. Content managed via Sanity CMS.
+Artwork data served from FlorenceEGI API.
