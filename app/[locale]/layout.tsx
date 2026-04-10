@@ -13,6 +13,8 @@ import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
 import { LenisProvider } from '@/components/layout/LenisProvider';
 import { CustomCursor } from '@/components/ui/CustomCursor';
+import { PageTransition } from '@/components/layout/PageTransition';
+import { personJsonLd, websiteJsonLd } from '@/lib/seo/jsonld';
 import type { Metadata } from 'next';
 
 type Props = {
@@ -60,13 +62,21 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <LenisProvider>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
+      />
       <a href="#main-content" className="skip-to-content">
         {t('skip_to_content')}
       </a>
       <CustomCursor />
       <Navigation locale={locale} />
       <main id="main-content" role="main" tabIndex={-1} className="flex-1">
-        {children}
+        <PageTransition>{children}</PageTransition>
       </main>
       <Footer locale={locale} />
       <script

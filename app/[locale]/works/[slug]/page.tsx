@@ -9,6 +9,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import { getArtistArtworks } from '@/lib/egi/client';
+import { artworkJsonLd } from '@/lib/seo/jsonld';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -66,6 +67,11 @@ export default async function WorkDetailPage({ params }: Props) {
   if (!artwork) notFound();
 
   return (
+    <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(artworkJsonLd(artwork, locale)) }}
+    />
     <article className="py-24 px-6 max-w-6xl mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
         {/* Image */}
@@ -129,5 +135,6 @@ export default async function WorkDetailPage({ params }: Props) {
         </div>
       </div>
     </article>
+    </>
   );
 }
