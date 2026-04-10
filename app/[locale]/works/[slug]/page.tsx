@@ -18,7 +18,7 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale, slug } = await params;
+  const { slug } = await params;
   const artworkId = parseInt(slug, 10);
   if (isNaN(artworkId)) return { title: 'Not Found' };
 

@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     if (err instanceof z.ZodError) {
       return NextResponse.json(
-        { success: false, errors: err.errors },
+        { success: false, errors: err.issues },
         { status: 422 }
       );
     }

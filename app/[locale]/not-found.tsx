@@ -22,6 +22,7 @@ export default async function NotFound() {
       <p className="text-[var(--text-muted)] mb-12">
         {t('not_found_description')}
       </p>
+      {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
       <a
         href="/it/works"
         className="inline-block px-8 py-3 border border-[var(--accent)] text-[var(--accent)] text-sm uppercase tracking-widest hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-300 rounded"

@@ -8,18 +8,7 @@
 
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
-import dynamic from 'next/dynamic';
-
-const HeroScene = dynamic(() => import('@/components/three/HeroScene'), {
-  ssr: false,
-  loading: () => (
-    <div className="h-screen w-full bg-[var(--bg)] flex items-center justify-center">
-      <div className="text-[var(--text-muted)] text-sm animate-pulse">
-        Loading...
-      </div>
-    </div>
-  ),
-});
+import { HeroWrapper } from '@/components/three/HeroWrapper';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -38,7 +27,7 @@ export default async function HomePage({ params }: Props) {
         aria-label="Hero"
         className="relative h-screen w-full overflow-hidden"
       >
-        <HeroScene />
+        <HeroWrapper />
 
         {/* Overlay content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">

@@ -33,7 +33,7 @@ export default async function WorksPage({ params }: Props) {
 
   const t = await getTranslations({ locale, namespace: 'works' });
 
-  let artworks;
+  let artworks: Awaited<ReturnType<typeof getArtistArtworks>>['data'] = [];
   try {
     const result = await getArtistArtworks(1, 100);
     artworks = result.data;

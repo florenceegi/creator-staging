@@ -6,7 +6,6 @@
  * @purpose Locale-aware layout with navigation, footer, skip-to-content, FEAnalytics
  */
 
-import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/lib/i18n/config';

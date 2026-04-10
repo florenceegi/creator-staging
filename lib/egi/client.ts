@@ -90,7 +90,7 @@ export async function getArtistArtworks(
   return { data: res.data, meta: res.meta };
 }
 
-export async function getCollection(id: number): Promise<{
+export interface EgiCollection {
   id: number;
   name: string;
   description: string | null;
@@ -101,10 +101,11 @@ export async function getCollection(id: number): Promise<{
   artworks: EgiArtwork[];
   artworks_meta: PaginationMeta;
   url: string;
-}> {
-  const res = await egiGet<{ success: boolean; data: typeof result }>(
+}
+
+export async function getCollection(id: number): Promise<EgiCollection> {
+  const res = await egiGet<{ success: boolean; data: EgiCollection }>(
     `/public/collections/${id}`
   );
-  const result = res.data;
-  return result;
+  return res.data;
 }
