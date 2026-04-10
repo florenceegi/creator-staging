@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "works": "Werke",
+    "about": "Ueber Mich",
+    "exhibitions": "Ausstellungen",
+    "press": "Presse",
+    "contact": "Kontakt",
+    "studio": "Atelier"
+  },
+  "works": {
+    "title": "Werke",
+    "all": "Alle",
+    "filter_series": "Serie",
+    "filter_year": "Jahr",
+    "filter_technique": "Technik",
+    "available": "Verfuegbar",
+    "sold": "Verkauft",
+    "on_loan": "Ausgeliehen",
+    "not_for_sale": "Nicht verkaeuflich",
+    "view_on_egi": "Auf FlorenceEGI ansehen",
+    "no_results": "Keine Werke gefunden"
+  },
+  "about": {
+    "title": "Ueber Mich",
+    "timeline": "Werdegang",
+    "cv_download": "Lebenslauf herunterladen"
+  },
+  "exhibitions": {
+    "title": "Ausstellungen",
+    "upcoming": "Kommende",
+    "current": "Aktuell",
+    "past": "Vergangene",
+    "download_press": "Pressemitteilung herunterladen",
+    "solo": "Einzelausstellung",
+    "group": "Gruppenausstellung",
+    "fair": "Messe",
+    "institutional": "Institutionell"
+  },
+  "press": {
+    "title": "Presse",
+    "read_online": "Online lesen",
+    "download_pdf": "PDF herunterladen",
+    "featured": "Hervorgehoben"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "name": "Name",
+    "email": "E-Mail",
+    "subject": "Betreff",
+    "message": "Nachricht",
+    "send": "Senden",
+    "sending": "Wird gesendet...",
+    "success": "Nachricht erfolgreich gesendet",
+    "error": "Fehler beim Senden der Nachricht",
+    "rate_limit": "Zu viele Nachrichten. Bitte versuchen Sie es in einigen Minuten erneut.",
+    "placeholder_name": "Ihr Name",
+    "placeholder_email": "Ihre E-Mail",
+    "placeholder_subject": "Betreff der Nachricht",
+    "placeholder_message": "Schreiben Sie Ihre Nachricht..."
+  },
+  "meta": {
+    "title": "Yuri Biagini — Kuenstler",
+    "description": "Offizielle Website von Yuri Biagini. Galerie, Ausstellungen, Biografie und Kontakt.",
+    "works_title": "Werke — Yuri Biagini",
+    "works_description": "Entdecken Sie die Werke von Yuri Biagini. Vollstaendige Galerie mit Details und Verfuegbarkeit.",
+    "about_title": "Ueber Mich — Yuri Biagini",
+    "about_description": "Biografie und kuenstlerischer Werdegang von Yuri Biagini.",
+    "exhibitions_title": "Ausstellungen — Yuri Biagini",
+    "exhibitions_description": "Vergangene und kommende Ausstellungen von Yuri Biagini.",
+    "press_title": "Presse — Yuri Biagini",
+    "press_description": "Artikel und Publikationen ueber Yuri Biagini.",
+    "contact_title": "Kontakt — Yuri Biagini",
+    "contact_description": "Kontaktieren Sie Yuri Biagini fuer Informationen zu Werken und Zusammenarbeit."
+  },
+  "errors": {
+    "not_found_title": "Seite nicht gefunden",
+    "not_found_description": "Die gesuchte Seite existiert nicht.",
+    "not_found_cta": "Zurueck zu den Werken",
+    "generic": "Ein Fehler ist aufgetreten"
+  },
+  "cursor": {
+    "view": "ANSEHEN",
+    "go": "GEHEN",
+    "drag": "ZIEHEN"
+  },
+  "a11y": {
+    "skip_to_content": "Zum Hauptinhalt springen",
+    "open_menu": "Menu oeffnen",
+    "close_menu": "Menu schliessen",
+    "change_language": "Sprache aendern",
+    "previous_work": "Vorheriges Werk",
+    "next_work": "Naechstes Werk",
+    "zoom_in": "Vergroessern",
+    "zoom_out": "Verkleinern"
+  },
+  "footer": {
+    "privacy": "Datenschutz",
+    "cookies": "Cookies",
+    "terms": "AGB",
+    "powered_by": "Blockchain-zertifiziert von FlorenceEGI"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "works": "Oeuvres",
+    "about": "A Propos",
+    "exhibitions": "Expositions",
+    "press": "Presse",
+    "contact": "Contact",
+    "studio": "Atelier"
+  },
+  "works": {
+    "title": "Oeuvres",
+    "all": "Toutes",
+    "filter_series": "Serie",
+    "filter_year": "Annee",
+    "filter_technique": "Technique",
+    "available": "Disponible",
+    "sold": "Vendu",
+    "on_loan": "En pret",
+    "not_for_sale": "Non a vendre",
+    "view_on_egi": "Voir sur FlorenceEGI",
+    "no_results": "Aucune oeuvre trouvee"
+  },
+  "about": {
+    "title": "A Propos",
+    "timeline": "Parcours",
+    "cv_download": "Telecharger CV"
+  },
+  "exhibitions": {
+    "title": "Expositions",
+    "upcoming": "A Venir",
+    "current": "En Cours",
+    "past": "Passees",
+    "download_press": "Telecharger le Communique",
+    "solo": "Solo",
+    "group": "Collective",
+    "fair": "Foire",
+    "institutional": "Institutionnelle"
+  },
+  "press": {
+    "title": "Presse",
+    "read_online": "Lire en Ligne",
+    "download_pdf": "Telecharger PDF",
+    "featured": "A la Une"
+  },
+  "contact": {
+    "title": "Contact",
+    "name": "Nom",
+    "email": "Email",
+    "subject": "Objet",
+    "message": "Message",
+    "send": "Envoyer",
+    "sending": "Envoi en cours...",
+    "success": "Message envoye avec succes",
+    "error": "Erreur lors de l'envoi du message",
+    "rate_limit": "Trop de messages. Veuillez reessayer dans quelques minutes.",
+    "placeholder_name": "Votre nom",
+    "placeholder_email": "Votre email",
+    "placeholder_subject": "Objet du message",
+    "placeholder_message": "Ecrivez votre message..."
+  },
+  "meta": {
+    "title": "Yuri Biagini — Artiste",
+    "description": "Site officiel de Yuri Biagini. Galerie, expositions, biographie et contact.",
+    "works_title": "Oeuvres — Yuri Biagini",
+    "works_description": "Decouvrez les oeuvres de Yuri Biagini. Galerie complete avec details et disponibilite.",
+    "about_title": "A Propos — Yuri Biagini",
+    "about_description": "Biographie et parcours artistique de Yuri Biagini.",
+    "exhibitions_title": "Expositions — Yuri Biagini",
+    "exhibitions_description": "Expositions passees et a venir de Yuri Biagini.",
+    "press_title": "Presse — Yuri Biagini",
+    "press_description": "Articles et publications sur Yuri Biagini.",
+    "contact_title": "Contact — Yuri Biagini",
+    "contact_description": "Contactez Yuri Biagini pour des informations sur les oeuvres et collaborations."
+  },
+  "errors": {
+    "not_found_title": "Page Non Trouvee",
+    "not_found_description": "La page que vous cherchez n'existe pas.",
+    "not_found_cta": "Retour aux Oeuvres",
+    "generic": "Une erreur est survenue"
+  },
+  "cursor": {
+    "view": "VOIR",
+    "go": "ALLER",
+    "drag": "GLISSER"
+  },
+  "a11y": {
+    "skip_to_content": "Aller au contenu principal",
+    "open_menu": "Ouvrir le menu",
+    "close_menu": "Fermer le menu",
+    "change_language": "Changer de langue",
+    "previous_work": "Oeuvre precedente",
+    "next_work": "Oeuvre suivante",
+    "zoom_in": "Agrandir",
+    "zoom_out": "Reduire"
+  },
+  "footer": {
+    "privacy": "Confidentialite",
+    "cookies": "Cookies",
+    "terms": "Conditions",
+    "powered_by": "Certifie sur blockchain par FlorenceEGI"
+  }
+}

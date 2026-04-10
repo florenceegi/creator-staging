@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "works": "作品",
+    "about": "关于",
+    "exhibitions": "展览",
+    "press": "媒体",
+    "contact": "联系",
+    "studio": "工作室"
+  },
+  "works": {
+    "title": "作品",
+    "all": "全部",
+    "filter_series": "系列",
+    "filter_year": "年份",
+    "filter_technique": "技法",
+    "available": "可售",
+    "sold": "已售",
+    "on_loan": "借展中",
+    "not_for_sale": "非卖品",
+    "view_on_egi": "在FlorenceEGI查看",
+    "no_results": "未找到作品"
+  },
+  "about": {
+    "title": "关于",
+    "timeline": "历程",
+    "cv_download": "下载简历"
+  },
+  "exhibitions": {
+    "title": "展览",
+    "upcoming": "即将举办",
+    "current": "正在展出",
+    "past": "往期展览",
+    "download_press": "下载新闻稿",
+    "solo": "个展",
+    "group": "群展",
+    "fair": "博览会",
+    "institutional": "机构展"
+  },
+  "press": {
+    "title": "媒体",
+    "read_online": "在线阅读",
+    "download_pdf": "下载PDF",
+    "featured": "精选"
+  },
+  "contact": {
+    "title": "联系",
+    "name": "姓名",
+    "email": "邮箱",
+    "subject": "主题",
+    "message": "留言",
+    "send": "发送",
+    "sending": "发送中...",
+    "success": "消息发送成功",
+    "error": "发送消息时出错",
+    "rate_limit": "消息过多，请稍后再试。",
+    "placeholder_name": "您的姓名",
+    "placeholder_email": "您的邮箱",
+    "placeholder_subject": "消息主题",
+    "placeholder_message": "请输入您的留言..."
+  },
+  "meta": {
+    "title": "Yuri Biagini — 艺术家",
+    "description": "Yuri Biagini官方网站。画廊、展览、传记和联系方式。",
+    "works_title": "作品 — Yuri Biagini",
+    "works_description": "探索Yuri Biagini的作品。完整画廊，包含详情和可购性。",
+    "about_title": "关于 — Yuri Biagini",
+    "about_description": "Yuri Biagini的传记和艺术历程。",
+    "exhibitions_title": "展览 — Yuri Biagini",
+    "exhibitions_description": "Yuri Biagini的往期和即将举办的展览。",
+    "press_title": "媒体 — Yuri Biagini",
+    "press_description": "关于Yuri Biagini的文章和出版物。",
+    "contact_title": "联系 — Yuri Biagini",
+    "contact_description": "联系Yuri Biagini了解作品和合作信息。"
+  },
+  "errors": {
+    "not_found_title": "页面未找到",
+    "not_found_description": "您查找的页面不存在。",
+    "not_found_cta": "返回作品",
+    "generic": "发生错误"
+  },
+  "cursor": {
+    "view": "查看",
+    "go": "前往",
+    "drag": "拖动"
+  },
+  "a11y": {
+    "skip_to_content": "跳至主要内容",
+    "open_menu": "打开菜单",
+    "close_menu": "关闭菜单",
+    "change_language": "切换语言",
+    "previous_work": "上一件作品",
+    "next_work": "下一件作品",
+    "zoom_in": "放大",
+    "zoom_out": "缩小"
+  },
+  "footer": {
+    "privacy": "隐私政策",
+    "cookies": "Cookie政策",
+    "terms": "使用条款",
+    "powered_by": "由FlorenceEGI区块链认证"
+  }
+}
