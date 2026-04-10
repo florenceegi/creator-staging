@@ -9,7 +9,24 @@
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import { AboutAnimated } from '@/components/about/AboutAnimated';
+import { getArtistTimeline } from '@/lib/egi/client';
+import type { EgiTimelineItem } from '@/lib/egi/client';
 import type { Metadata } from 'next';
+
+const dotColors: Record<string, string> = {
+  milestone: 'bg-yellow-400 border-yellow-400/40',
+  achievement: 'bg-emerald-400 border-emerald-400/40',
+  standard: 'bg-[var(--accent)] border-[var(--accent)]/40',
+};
+
+function TimelineDot({ type }: { type: string }) {
+  const color = dotColors[type] || dotColors.standard;
+  return (
+    <div
+      className={`absolute -left-[41px] w-4 h-4 rounded-full border-2 timeline-dot ${color}`}
+    />
+  );
+}
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -29,6 +46,13 @@ export default async function AboutPage({ params }: Props) {
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: 'about' });
+
+  let timeline: EgiTimelineItem[] = [];
+  try {
+    timeline = await getArtistTimeline();
+  } catch {
+    // Graceful degradation — timeline section hidden if API unavailable
+  }
 
   return (
     <AboutAnimated>
@@ -56,32 +80,46 @@ export default async function AboutPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Timeline */}
-        <section aria-labelledby="timeline-heading">
-          <h2
-            id="timeline-heading"
-            className="font-[family-name:var(--font-serif)] text-2xl md:text-3xl font-light mb-12 about-bio-text"
-          >
-            {t('timeline')}
-          </h2>
+        {/* Timeline — from EGI API */}
+        {timeline.length > 0 && (
+          <section aria-labelledby="timeline-heading">
+            <h2
+              id="timeline-heading"
+              className="font-[family-name:var(--font-serif)] text-2xl md:text-3xl font-light mb-12 about-bio-text"
+            >
+              {t('timeline')}
+            </h2>
 
-          <div className="border-l-2 border-[var(--border)] pl-8 space-y-10">
-            {[2024, 2023, 2022, 2021, 2020].map((year) => (
-              <div key={year} className="relative timeline-item">
-                <div className="absolute -left-[41px] w-4 h-4 rounded-full bg-[var(--accent)] border-2 border-[var(--bg)] timeline-dot" />
-                <p className="text-[var(--accent)] text-sm uppercase tracking-widest mb-2">
-                  {year}
-                </p>
-                <p className="text-[var(--text-primary)] font-medium">
-                  Timeline event title
-                </p>
-                <p className="text-[var(--text-secondary)] text-sm mt-1">
-                  Event description placeholder — Sanity CMS
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
+            <div className="border-l-2 border-[var(--border)] pl-8 space-y-10">
+              {timeline.map((item) => (
+                <div key={item.id} className="relative timeline-item">
+                  <TimelineDot type={item.chapter_type} />
+                  <p className="text-[var(--accent)] text-sm uppercase tracking-widest mb-2">
+                    {item.date_range_display}
+                    {item.is_ongoing && (
+                      <span className="ml-2 text-xs font-medium text-emerald-400 normal-case tracking-normal">
+                        {t('ongoing')}
+                      </span>
+                    )}
+                  </p>
+                  <p className="text-[var(--text-primary)] font-medium">
+                    {item.title}
+                  </p>
+                  {item.content_preview && (
+                    <p className="text-[var(--text-secondary)] text-sm mt-1">
+                      {item.content_preview}
+                    </p>
+                  )}
+                  {item.duration_formatted && (
+                    <p className="text-[var(--text-muted)] text-xs mt-1 italic">
+                      {item.duration_formatted}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* CV Download */}
         <div className="mt-16 text-center">

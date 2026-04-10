@@ -23,7 +23,8 @@
   "about": {
     "title": "A Propos",
     "timeline": "Parcours",
-    "cv_download": "Telecharger CV"
+    "cv_download": "Telecharger CV",
+    "ongoing": "En cours"
   },
   "exhibitions": {
     "title": "Expositions",

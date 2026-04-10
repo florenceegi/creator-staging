@@ -103,6 +103,26 @@ export interface EgiCollection {
   url: string;
 }
 
+export interface EgiTimelineItem {
+  id: number;
+  title: string;
+  content_preview: string | null;
+  date_from: string | null;
+  date_to: string | null;
+  is_ongoing: boolean;
+  chapter_type: 'standard' | 'milestone' | 'achievement';
+  date_range_display: string;
+  duration_formatted: string;
+  icon: string;
+}
+
+export async function getArtistTimeline(): Promise<EgiTimelineItem[]> {
+  const res = await egiGet<{ success: boolean; data: EgiTimelineItem[] }>(
+    `/public/artists/${ARTIST_ID}/timeline`
+  );
+  return res.data;
+}
+
 export async function getCollection(id: number): Promise<EgiCollection> {
   const res = await egiGet<{ success: boolean; data: EgiCollection }>(
     `/public/collections/${id}`

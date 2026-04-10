@@ -23,7 +23,8 @@
   "about": {
     "title": "Sobre Mi",
     "timeline": "Trayectoria",
-    "cv_download": "Descargar CV"
+    "cv_download": "Descargar CV",
+    "ongoing": "En curso"
   },
   "exhibitions": {
     "title": "Exposiciones",
