@@ -73,13 +73,16 @@ export function CustomCursor() {
       el.addEventListener('mouseleave', onMouseLeaveInteractive);
     });
 
+    const dotEl = dotRef.current;
+    const ringEl = ringRef.current;
+
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
       interactiveElements.forEach((el) => {
         el.removeEventListener('mouseenter', onMouseEnterInteractive);
         el.removeEventListener('mouseleave', onMouseLeaveInteractive);
       });
-      gsap.killTweensOf([dotRef.current, ringRef.current]);
+      gsap.killTweensOf([dotEl, ringEl]);
     };
   }, [prefersReducedMotion, isTouch, onMouseMove, onMouseEnterInteractive, onMouseLeaveInteractive]);
 

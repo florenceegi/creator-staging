@@ -25,14 +25,15 @@ export function PageTransition({ children }: Props) {
   useEffect(() => {
     if (prefersReducedMotion || !containerRef.current) return;
 
+    const el = containerRef.current;
     gsap.fromTo(
-      containerRef.current,
+      el,
       { opacity: 0, y: 12 },
       { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
     );
 
     return () => {
-      gsap.killTweensOf(containerRef.current);
+      gsap.killTweensOf(el);
     };
   }, [pathname, prefersReducedMotion]);
 

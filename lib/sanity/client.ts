@@ -18,7 +18,8 @@ export const sanityClient = createClient({
 
 const builder = imageUrlBuilder(sanityClient);
 
-export function sanityImageUrl(source: unknown) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function sanityImageUrl(source: any) {
   return builder.image(source);
 }
 
