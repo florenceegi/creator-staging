@@ -29,7 +29,7 @@ jobs:
       - name: Deploy via SSM
         run: |
           BASE="/home/forge/creator-staging.florenceegi.com"
-          SCRIPT="cd $BASE && git pull origin main && npm ci && npm run build && pm2 restart creator-staging"
+          SCRIPT="cd $BASE && git pull origin main && npm install --no-audit --no-fund && npm run build && pm2 restart creator-staging"
 
           COMMAND_ID=$(aws ssm send-command \
             --instance-ids "${{ secrets.EC2_INSTANCE_ID }}" \
