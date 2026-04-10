@@ -1,0 +1,38 @@
+/**
+ * @package YURI-BIAGINI — Navigation
+ * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
+ * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @date 2026-04-10
+ * @purpose Responsive navigation bar with locale switcher and mobile drawer
+ */
+
+import { getTranslations } from 'next-intl/server';
+import { NavigationClient } from './NavigationClient';
+
+type Props = {
+  locale: string;
+};
+
+export async function Navigation({ locale }: Props) {
+  const t = await getTranslations({ locale, namespace: 'nav' });
+  const tA11y = await getTranslations({ locale, namespace: 'a11y' });
+
+  const links = [
+    { href: `/${locale}/works`, label: t('works') },
+    { href: `/${locale}/about`, label: t('about') },
+    { href: `/${locale}/exhibitions`, label: t('exhibitions') },
+    { href: `/${locale}/press`, label: t('press') },
+    { href: `/${locale}/contact`, label: t('contact') },
+  ];
+
+  return (
+    <NavigationClient
+      links={links}
+      locale={locale}
+      artistName="Yuri Biagini"
+      openMenuLabel={tA11y('open_menu')}
+      closeMenuLabel={tA11y('close_menu')}
+      changeLangLabel={tA11y('change_language')}
+    />
+  );
+}
