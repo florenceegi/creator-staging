@@ -58,7 +58,7 @@ export default async function AboutPage({ params }: Props) {
 
   return (
     <AboutAnimated>
-      <article className="py-24 px-6 max-w-4xl mx-auto">
+      <article className="py-24 px-6 max-w-6xl mx-auto">
         <h1 className="font-[family-name:var(--font-serif)] text-4xl md:text-6xl font-light text-center mb-16">
           {t('title')}
         </h1>
