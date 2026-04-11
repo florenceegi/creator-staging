@@ -123,6 +123,7 @@ export interface EgiTimelineItem {
 }
 
 export interface EgiTimelineResponse {
+  artist?: { display_name: string | null; avatar_url: string | null };
   biography: EgiBiography | null;
   chapters: EgiTimelineItem[];
 }

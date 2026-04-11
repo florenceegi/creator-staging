@@ -9,6 +9,7 @@
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import { AboutAnimated } from '@/components/about/AboutAnimated';
+import Image from 'next/image';
 import { getArtistTimeline } from '@/lib/egi/client';
 import type { EgiTimelineResponse } from '@/lib/egi/client';
 import type { Metadata } from 'next';
@@ -54,7 +55,7 @@ export default async function AboutPage({ params }: Props) {
     // Graceful degradation — content hidden if API unavailable
   }
 
-  const { biography, chapters } = timelineData;
+  const { artist, biography, chapters } = timelineData;
 
   return (
     <AboutAnimated>
@@ -66,8 +67,21 @@ export default async function AboutPage({ params }: Props) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24">
           {/* Portrait */}
           <div className="md:col-span-1 about-portrait">
-            <div className="aspect-[3/4] bg-[var(--bg-surface)] rounded-lg border border-[var(--border)] flex items-center justify-center overflow-hidden">
-              <span className="text-[var(--text-muted)] text-sm">Portrait</span>
+            <div className="aspect-[3/4] bg-[var(--bg-surface)] rounded-lg border border-[var(--border)] overflow-hidden">
+              {artist?.avatar_url ? (
+                <Image
+                  src={artist.avatar_url}
+                  alt={artist.display_name || 'Artist portrait'}
+                  width={400}
+                  height={533}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <span className="text-[var(--text-muted)] text-sm">Portrait</span>
+                </div>
+              )}
             </div>
           </div>
 
