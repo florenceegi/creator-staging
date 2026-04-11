@@ -10,7 +10,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import { AboutAnimated } from '@/components/about/AboutAnimated';
 import { getArtistTimeline } from '@/lib/egi/client';
-import type { EgiTimelineItem } from '@/lib/egi/client';
+import type { EgiTimelineResponse } from '@/lib/egi/client';
 import type { Metadata } from 'next';
 
 const dotColors: Record<string, string> = {
@@ -47,12 +47,14 @@ export default async function AboutPage({ params }: Props) {
 
   const t = await getTranslations({ locale, namespace: 'about' });
 
-  let timeline: EgiTimelineItem[] = [];
+  let timelineData: EgiTimelineResponse = { biography: null, chapters: [] };
   try {
-    timeline = await getArtistTimeline();
+    timelineData = await getArtistTimeline();
   } catch {
-    // Graceful degradation — timeline section hidden if API unavailable
+    // Graceful degradation — content hidden if API unavailable
   }
+
+  const { biography, chapters } = timelineData;
 
   return (
     <AboutAnimated>
@@ -69,19 +71,23 @@ export default async function AboutPage({ params }: Props) {
             </div>
           </div>
 
-          {/* Bio text */}
+          {/* Bio text — from EGI biography */}
           <div className="md:col-span-2 space-y-6">
-            <p className="about-bio-text text-[var(--text-secondary)] leading-relaxed text-lg">
-              Biography content will be loaded from Sanity CMS.
-            </p>
-            <p className="about-bio-text text-[var(--text-secondary)] leading-relaxed text-lg">
-              Second paragraph placeholder for extended biography.
-            </p>
+            {biography ? (
+              <div
+                className="about-bio-text text-[var(--text-secondary)] leading-relaxed text-lg prose prose-invert max-w-none prose-p:text-[var(--text-secondary)] prose-p:leading-relaxed prose-p:text-lg"
+                dangerouslySetInnerHTML={{ __html: biography.content }}
+              />
+            ) : (
+              <p className="about-bio-text text-[var(--text-secondary)] leading-relaxed text-lg">
+                {t('bio_placeholder')}
+              </p>
+            )}
           </div>
         </div>
 
         {/* Timeline — from EGI API */}
-        {timeline.length > 0 && (
+        {chapters.length > 0 && (
           <section aria-labelledby="timeline-heading">
             <h2
               id="timeline-heading"
@@ -91,7 +97,7 @@ export default async function AboutPage({ params }: Props) {
             </h2>
 
             <div className="border-l-2 border-[var(--border)] pl-8 space-y-10">
-              {timeline.map((item) => (
+              {chapters.map((item) => (
                 <div key={item.id} className="relative timeline-item">
                   <TimelineDot type={item.chapter_type} />
                   <p className="text-[var(--accent)] text-sm uppercase tracking-widest mb-2">

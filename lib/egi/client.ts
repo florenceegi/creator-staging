@@ -103,6 +103,12 @@ export interface EgiCollection {
   url: string;
 }
 
+export interface EgiBiography {
+  title: string;
+  content: string;
+  excerpt: string | null;
+}
+
 export interface EgiTimelineItem {
   id: number;
   title: string;
@@ -116,10 +122,21 @@ export interface EgiTimelineItem {
   icon: string;
 }
 
-export async function getArtistTimeline(): Promise<EgiTimelineItem[]> {
-  const res = await egiGet<{ success: boolean; data: EgiTimelineItem[] }>(
-    `/public/artists/${ARTIST_ID}/timeline`
-  );
+export interface EgiTimelineResponse {
+  biography: EgiBiography | null;
+  chapters: EgiTimelineItem[];
+}
+
+export async function getArtistTimeline(): Promise<EgiTimelineResponse> {
+  const res = await egiGet<{
+    success: boolean;
+    data: EgiTimelineResponse | EgiTimelineItem[];
+  }>(`/public/artists/${ARTIST_ID}/timeline`);
+
+  // Handle both old format (array) and new format (object with biography+chapters)
+  if (Array.isArray(res.data)) {
+    return { biography: null, chapters: res.data };
+  }
   return res.data;
 }
 

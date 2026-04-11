@@ -24,7 +24,8 @@
     "title": "关于",
     "timeline": "历程",
     "cv_download": "下载简历",
-    "ongoing": "进行中"
+    "ongoing": "进行中",
+    "bio_placeholder": "传记即将推出。"
   },
   "exhibitions": {
     "title": "展览",

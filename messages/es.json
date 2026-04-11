@@ -24,7 +24,8 @@
     "title": "Sobre Mi",
     "timeline": "Trayectoria",
     "cv_download": "Descargar CV",
-    "ongoing": "En curso"
+    "ongoing": "En curso",
+    "bio_placeholder": "Biografia proximamente."
   },
   "exhibitions": {
     "title": "Exposiciones",

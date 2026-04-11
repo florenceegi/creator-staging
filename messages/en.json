@@ -24,7 +24,8 @@
     "title": "About",
     "timeline": "Journey",
     "cv_download": "Download CV",
-    "ongoing": "Ongoing"
+    "ongoing": "Ongoing",
+    "bio_placeholder": "Biography coming soon."
   },
   "exhibitions": {
     "title": "Exhibitions",

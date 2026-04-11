@@ -24,7 +24,8 @@
     "title": "A Propos",
     "timeline": "Parcours",
     "cv_download": "Telecharger CV",
-    "ongoing": "En cours"
+    "ongoing": "En cours",
+    "bio_placeholder": "Biographie a venir."
   },
   "exhibitions": {
     "title": "Expositions",

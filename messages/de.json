@@ -24,7 +24,8 @@
     "title": "Ueber Mich",
     "timeline": "Werdegang",
     "cv_download": "Lebenslauf herunterladen",
-    "ongoing": "Laufend"
+    "ongoing": "Laufend",
+    "bio_placeholder": "Biografie folgt in Kuerze."
   },
   "exhibitions": {
     "title": "Ausstellungen",

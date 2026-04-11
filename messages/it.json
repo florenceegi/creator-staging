@@ -24,7 +24,8 @@
     "title": "Chi Sono",
     "timeline": "Percorso",
     "cv_download": "Scarica CV",
-    "ongoing": "In corso"
+    "ongoing": "In corso",
+    "bio_placeholder": "Biografia in arrivo."
   },
   "exhibitions": {
     "title": "Mostre",
