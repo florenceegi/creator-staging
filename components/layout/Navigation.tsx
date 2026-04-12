@@ -19,9 +19,11 @@ export async function Navigation({ locale }: Props) {
 
   const links = [
     { href: `/${locale}/works`, label: t('works') },
+    { href: `/${locale}/collections`, label: t('collections') },
+    { href: `/${locale}/collect`, label: t('collect') },
     { href: `/${locale}/about`, label: t('about') },
     { href: `/${locale}/exhibitions`, label: t('exhibitions') },
-    { href: `/${locale}/press`, label: t('press') },
+    { href: `/${locale}/commission`, label: t('commission') },
     { href: `/${locale}/contact`, label: t('contact') },
   ];
 
