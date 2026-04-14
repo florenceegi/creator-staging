@@ -1,7 +1,7 @@
 /**
  * @package CREATOR-STAGING — EGI Auth Client
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @version 1.1.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-14
  * @purpose Sanctum cookie auth — fetch authenticated creator from EGI API
  */
@@ -21,6 +21,12 @@ export interface AuthCreator {
   artworks_count: number;
 }
 
+/** Read a cookie value by name */
+function getCookie(name: string): string | null {
+  const match = document.cookie.match(new RegExp('(^|;\\s*)' + name + '=([^;]*)'));
+  return match ? decodeURIComponent(match[2]) : null;
+}
+
 /**
  * Fetch the authenticated creator from EGI via Sanctum cookie.
  * Must be called client-side (browser has the .florenceegi.com cookie).
@@ -28,9 +34,17 @@ export interface AuthCreator {
  */
 export async function getAuthenticatedCreator(): Promise<AuthCreator | null> {
   try {
+    const headers: Record<string, string> = { Accept: 'application/json' };
+
+    // Sanctum expects X-XSRF-TOKEN header for stateful requests
+    const xsrfToken = getCookie('XSRF-TOKEN');
+    if (xsrfToken) {
+      headers['X-XSRF-TOKEN'] = xsrfToken;
+    }
+
     const res = await fetch(`${EGI_BASE_URL}/api/user`, {
       credentials: 'include',
-      headers: { Accept: 'application/json' },
+      headers,
     });
 
     if (!res.ok) return null;
