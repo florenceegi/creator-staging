@@ -17,7 +17,8 @@ export async function GET(req: NextRequest) {
   }
 
   const redirect = req.nextUrl.searchParams.get('redirect') || '/';
-  const res = NextResponse.redirect(new URL(redirect, req.url));
+  const base = process.env.NEXT_PUBLIC_SITE_URL || req.url;
+  const res = NextResponse.redirect(new URL(redirect, base));
   res.cookies.set('animation', a, { path: '/', maxAge: 60 * 60 * 24 * 30 });
   return res;
 }
