@@ -1,7 +1,7 @@
 /**
- * @package YURI-BIAGINI — Contact API
+ * @package CREATOR-STAGING — Contact API
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-10
  * @purpose Contact form API endpoint with Zod validation and Resend email
  */

@@ -1,7 +1,7 @@
 /**
- * @package YURI-BIAGINI — VariantSwitcher
+ * @package CREATOR-STAGING — VariantSwitcher
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 3.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @version 3.0.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-13
  * @purpose Floating dev panel — switch template + animation + 3D scene live
  */

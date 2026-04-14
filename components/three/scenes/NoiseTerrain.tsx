@@ -1,7 +1,7 @@
 /**
- * @package YURI-BIAGINI — NoiseTerrain Scene
+ * @package CREATOR-STAGING — NoiseTerrain Scene
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-13
  * @purpose Generative landscape with moving dunes, top-down camera
  */

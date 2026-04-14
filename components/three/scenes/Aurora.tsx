@@ -1,7 +1,7 @@
 /**
- * @package YURI-BIAGINI — Aurora Scene
+ * @package CREATOR-STAGING — Aurora Scene
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-13
  * @purpose Northern lights effect — colored light bands undulating in space
  */

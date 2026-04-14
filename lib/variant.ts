@@ -1,7 +1,7 @@
 /**
- * @package YURI-BIAGINI — Variant System
+ * @package CREATOR-STAGING — Variant System
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 2.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-13
  * @purpose Template variant detection — cookie > env > default. Switcher reads cookie.
  */

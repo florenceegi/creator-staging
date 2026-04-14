@@ -1,7 +1,7 @@
 /**
- * @package YURI-BIAGINI — HeroScrollytelling (Template 04)
+ * @package CREATOR-STAGING — HeroScrollytelling (Template 04)
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-13
  * @purpose Enormous typography hero that shrinks on scroll — template 04 Scrollytelling
  */

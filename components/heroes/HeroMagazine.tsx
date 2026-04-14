@@ -1,7 +1,7 @@
 /**
- * @package YURI-BIAGINI — HeroMagazine (Template 05)
+ * @package CREATOR-STAGING — HeroMagazine (Template 05)
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-13
  * @purpose Bento grid fullscreen hero — template 05 Magazine Art
  */

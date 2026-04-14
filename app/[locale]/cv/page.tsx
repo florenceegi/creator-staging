@@ -1,7 +1,7 @@
 /**
- * @package YURI-BIAGINI — CV Page
+ * @package CREATOR-STAGING — CV Page
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-12
  * @purpose Formal curriculum vitae — clean, printable, professional format for galleries and curators
  */

@@ -1,35 +1,31 @@
-# Yuri Biagini — Artist Website
-# https://yuri-biagini.florenceegi.com
+# FlorenceEGI — Creator Site Configurator
+# https://creator-staging.florenceegi.com
 
-> This is the official website of artist Yuri Biagini.
-> It is part of the FlorenceEGI ecosystem (florenceegi.com).
+> This is the creator site configurator for FlorenceEGI ecosystem.
+> Registered creators preview and commission their professional website.
 
 ## About
-Yuri Biagini is an artist. This website showcases their works,
-exhibitions, press coverage, and provides contact information.
+Creator Staging is a configurator where FlorenceEGI creators
+preview their artist website with real content from EGI API,
+choose template, animation, 3D scene, and subdomain, then
+commission FlorenceEGI SRL (web agency) to build it.
 
 ## Pages
-- /it/ — Home page (Italian, default)
-- /en/ — Home page (English)
+- /[locale]/ — Home page with live preview
 - /[locale]/works — Gallery of artworks
 - /[locale]/about — Artist biography and timeline
-- /[locale]/exhibitions — Past and upcoming exhibitions
-- /[locale]/press — Press coverage and articles
+- /[locale]/exhibitions — Exhibitions
+- /[locale]/collections — Artist collections
 - /[locale]/contact — Contact form
 
 ## Languages
 Available in: Italian (it), English (en), French (fr),
 German (de), Spanish (es), Chinese (zh).
 
-## Artworks
-All artworks are certified on Algorand blockchain via FlorenceEGI.
-Each artwork links to art.florenceegi.com for purchase and
-blockchain verification details.
-
-## Contact
-Email: yuri@florenceegi.com
-Platform: art.florenceegi.com
+## Templates
+6 structural templates: Oscura, Canvas, Immersive,
+Scrollytelling, Magazine, Brutalist.
 
 ## Technical
-Built with Next.js. Content managed via Sanity CMS.
-Artwork data served from FlorenceEGI API.
+Built with Next.js 15. Three.js 3D scenes. GSAP animations.
+Content from FlorenceEGI API. Part of FlorenceEGI ecosystem.

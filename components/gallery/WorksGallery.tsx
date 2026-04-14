@@ -1,7 +1,7 @@
 /**
- * @package YURI-BIAGINI — WorksGallery
+ * @package CREATOR-STAGING — WorksGallery
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-10
  * @purpose Masonry gallery grid with lazy loading, hover effects, links to EGI
  */

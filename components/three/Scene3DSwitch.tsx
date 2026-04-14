@@ -1,7 +1,7 @@
 /**
- * @package YURI-BIAGINI — Scene3DSwitch
+ * @package CREATOR-STAGING — Scene3DSwitch
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-13
  * @purpose Dynamic loader for the active 3D scene — lazy loaded per scene type
  */

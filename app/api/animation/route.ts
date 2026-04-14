@@ -1,7 +1,7 @@
 /**
- * @package YURI-BIAGINI — Animation Switcher API
+ * @package CREATOR-STAGING — Animation Switcher API
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-13
  * @purpose Sets animation cookie from query param — used by switcher component
  */

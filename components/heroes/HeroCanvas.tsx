@@ -1,7 +1,7 @@
 /**
- * @package YURI-BIAGINI — HeroCanvas (Template 02)
+ * @package CREATOR-STAGING — HeroCanvas (Template 02)
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — YURI-BIAGINI)
+ * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-13
  * @purpose Split layout hero — left text, right featured artwork — template 02 Canvas Vivo
  */
