@@ -8,6 +8,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { rateLimit } from '@/lib/rate-limit';
 
 const commissionSchema = z.object({
   name: z.string().min(1).max(100),
@@ -18,7 +19,15 @@ const commissionSchema = z.object({
   gdpr_consent: z.literal(true),
 });
 
+const RATE_LIMIT = 3;
+const RATE_WINDOW = 300_000;
+
 export async function POST(request: NextRequest) {
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  if (!rateLimit(`commission:${ip}`, RATE_LIMIT, RATE_WINDOW)) {
+    return NextResponse.json({ success: false, error: 'rate_limit' }, { status: 429 });
+  }
+
   try {
     const body = await request.json();
     const data = commissionSchema.parse(body);

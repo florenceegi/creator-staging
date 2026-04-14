@@ -8,6 +8,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { rateLimit } from '@/lib/rate-limit';
 
 const contactSchema = z.object({
   name: z.string().min(1).max(100),
@@ -17,7 +18,15 @@ const contactSchema = z.object({
   gdpr_consent: z.literal(true),
 });
 
+const RATE_LIMIT = 5;
+const RATE_WINDOW = 60_000;
+
 export async function POST(request: NextRequest) {
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  if (!rateLimit(`contact:${ip}`, RATE_LIMIT, RATE_WINDOW)) {
+    return NextResponse.json({ success: false, error: 'rate_limit' }, { status: 429 });
+  }
+
   try {
     const body = await request.json();
     const data = contactSchema.parse(body);
