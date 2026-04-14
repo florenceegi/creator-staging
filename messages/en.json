@@ -23,7 +23,8 @@
     "not_for_sale": "Not for Sale",
     "view_on_egi": "View on FlorenceEGI",
     "no_results": "No works found",
-    "no_image": "Image not available"
+    "no_image": "Image not available",
+    "placeholder_notice": "These are demo images — upload your artworks on FlorenceEGI to see them here."
   },
   "about": {
     "title": "About",
@@ -78,7 +79,8 @@
     "explore": "Explore the collection",
     "works_count": "works",
     "no_collections": "Collections will be available soon.",
-    "uncategorized": "Uncategorized"
+    "uncategorized": "Uncategorized",
+    "placeholder_notice": "These are demo collections — upload your artworks on FlorenceEGI to see them here."
   },
   "collect": {
     "title": "Collect",

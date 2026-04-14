@@ -23,7 +23,8 @@
     "not_for_sale": "非卖品",
     "view_on_egi": "在FlorenceEGI查看",
     "no_results": "未找到作品",
-    "no_image": "图片不可用"
+    "no_image": "图片不可用",
+    "placeholder_notice": "这些是演示图片 — 在FlorenceEGI上传您的作品即可在此显示。"
   },
   "about": {
     "title": "关于",
@@ -78,7 +79,8 @@
     "explore": "探索此系列",
     "works_count": "件作品",
     "no_collections": "系列作品即将上线。",
-    "uncategorized": "未分类"
+    "uncategorized": "未分类",
+    "placeholder_notice": "这些是演示系列 — 在FlorenceEGI上传您的作品即可在此显示。"
   },
   "collect": {
     "title": "收藏",

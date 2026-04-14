@@ -23,7 +23,8 @@
     "not_for_sale": "Non in vendita",
     "view_on_egi": "Vedi su FlorenceEGI",
     "no_results": "Nessuna opera trovata",
-    "no_image": "Immagine non disponibile"
+    "no_image": "Immagine non disponibile",
+    "placeholder_notice": "Queste sono immagini demo — carica le tue opere su FlorenceEGI per vederle qui."
   },
   "about": {
     "title": "Chi Sono",
@@ -78,7 +79,8 @@
     "explore": "Esplora la collezione",
     "works_count": "opere",
     "no_collections": "Le collezioni saranno disponibili a breve.",
-    "uncategorized": "Senza collezione"
+    "uncategorized": "Senza collezione",
+    "placeholder_notice": "Queste sono collezioni demo — carica le tue opere su FlorenceEGI per vederle qui."
   },
   "collect": {
     "title": "Colleziona",

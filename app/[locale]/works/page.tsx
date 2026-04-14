@@ -1,15 +1,15 @@
 /**
  * @package CREATOR-STAGING — Works Page
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-10
- * @purpose Gallery page fetching artworks from EGI API with ISR
+ * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-14
+ * @purpose Gallery page — thin server shell, artworks fetched client-side for authenticated creator
  */
 
+import { Suspense } from 'react';
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
-import { getArtistArtworks } from '@/lib/egi/client';
-import { WorksGallery } from '@/components/gallery/WorksGallery';
+import { WorksContent } from '@/components/gallery/WorksContent';
 import type { Metadata } from 'next';
 
 type Props = {
@@ -25,21 +25,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export const revalidate = 60;
-
 export default async function WorksPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: 'works' });
-
-  let artworks: Awaited<ReturnType<typeof getArtistArtworks>>['data'] = [];
-  try {
-    const result = await getArtistArtworks(1, 100);
-    artworks = result.data;
-  } catch {
-    artworks = [];
-  }
 
   return (
     <section className="py-24 px-6 max-w-7xl mx-auto">
@@ -47,16 +37,22 @@ export default async function WorksPage({ params }: Props) {
         {t('title')}
       </h1>
 
-      <WorksGallery
-        artworks={artworks}
-        locale={locale}
-        labels={{
-          all: t('all'),
-          view_on_egi: t('view_on_egi'),
-          no_results: t('no_results'),
-          no_image: t('no_image'),
-        }}
-      />
+      <Suspense fallback={
+        <div className="flex items-center justify-center py-20 gap-3" style={{ color: 'var(--text-muted)' }}>
+          <span className="text-sm tracking-wider uppercase">Loading...</span>
+        </div>
+      }>
+        <WorksContent
+          locale={locale}
+          labels={{
+            all: t('all'),
+            view_on_egi: t('view_on_egi'),
+            no_results: t('no_results'),
+            no_image: t('no_image'),
+          }}
+          placeholderNotice={t('placeholder_notice')}
+        />
+      </Suspense>
     </section>
   );
 }

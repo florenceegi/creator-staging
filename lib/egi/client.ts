@@ -58,11 +58,18 @@ export interface PaginationMeta {
   total: number;
 }
 
-async function egiGet<T>(path: string): Promise<T> {
-  const res = await fetch(`${EGI_API_URL}${path}`, {
-    next: { revalidate: 60 },
+async function egiGet<T>(path: string, options?: { cache?: RequestCache }): Promise<T> {
+  const fetchOpts: RequestInit = {
     headers: { Accept: 'application/json' },
-  });
+  };
+  // Server-side: use ISR revalidation. Client-side: use standard cache.
+  if (typeof window === 'undefined') {
+    (fetchOpts as Record<string, unknown>).next = { revalidate: 60 };
+  } else {
+    fetchOpts.cache = options?.cache || 'no-store';
+  }
+
+  const res = await fetch(`${EGI_API_URL}${path}`, fetchOpts);
 
   if (!res.ok) {
     throw new Error(`EGI API error: ${res.status} ${res.statusText}`);
