@@ -47,7 +47,7 @@ export default async function HomePage({ params }: Props) {
     featuredWorks = [];
   }
 
-  const artistName = 'Yuri Biagini';
+  const artistName = process.env.NEXT_PUBLIC_SITE_NAME || 'Creator Staging';
 
   return (
     <>
@@ -81,7 +81,7 @@ export default async function HomePage({ params }: Props) {
             <HeroImmersive artistName={artistName} subtitle={tHero('tagline')} />
           )}
           {variant === '04' && (
-            <HeroScrollytelling artistName={artistName} birthYear="1990" />
+            <HeroScrollytelling artistName={artistName} />
           )}
           {variant === '05' && (
             <HeroMagazine

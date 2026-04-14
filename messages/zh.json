@@ -77,7 +77,8 @@
     "title": "系列作品",
     "explore": "探索此系列",
     "works_count": "件作品",
-    "no_collections": "系列作品即将上线。"
+    "no_collections": "系列作品即将上线。",
+    "uncategorized": "未分类"
   },
   "collect": {
     "title": "收藏",

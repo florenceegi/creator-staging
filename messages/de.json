@@ -77,7 +77,8 @@
     "title": "Sammlungen",
     "explore": "Sammlung erkunden",
     "works_count": "Werke",
-    "no_collections": "Sammlungen werden bald verfuegbar sein."
+    "no_collections": "Sammlungen werden bald verfuegbar sein.",
+    "uncategorized": "Ohne Sammlung"
   },
   "collect": {
     "title": "Sammeln",

@@ -108,7 +108,11 @@ export default async function LocaleLayout({ children, params }: Props) {
       <Footer locale={locale} />
       <script
         dangerouslySetInnerHTML={{
-          __html: `window.FEAnalyticsConfig={siteId:'${process.env.NEXT_PUBLIC_FE_ANALYTICS_SITE_ID || 'creator-staging'}',endpoint:'${process.env.NEXT_PUBLIC_FE_ANALYTICS_ENDPOINT || 'https://hub.florenceegi.com/api/analytics/collect'}',requireConsent:false};`,
+          __html: `window.FEAnalyticsConfig=${JSON.stringify({
+            siteId: process.env.NEXT_PUBLIC_FE_ANALYTICS_SITE_ID || 'creator-staging',
+            endpoint: process.env.NEXT_PUBLIC_FE_ANALYTICS_ENDPOINT || 'https://hub.florenceegi.com/api/analytics/collect',
+            requireConsent: false,
+          })};`,
         }}
       />
       <script

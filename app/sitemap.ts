@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl =
     process.env.NEXT_PUBLIC_SITE_URL || 'https://creator-staging.florenceegi.com';
 
-  const staticPages = ['', '/works', '/about', '/exhibitions', '/press', '/contact'];
+  const staticPages = ['', '/works', '/about', '/exhibitions', '/press', '/contact', '/collect', '/collections', '/cv', '/commission'];
 
   const entries: MetadataRoute.Sitemap = [];
 

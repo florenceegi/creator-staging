@@ -14,6 +14,7 @@ const contactSchema = z.object({
   email: z.string().email().max(200),
   subject: z.string().min(1).max(200),
   message: z.string().min(1).max(5000),
+  gdpr_consent: z.literal(true),
 });
 
 export async function POST(request: NextRequest) {

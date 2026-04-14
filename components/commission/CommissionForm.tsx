@@ -68,6 +68,7 @@ export function CommissionForm({ labels }: Props) {
           description: data.get('description'),
           budget: data.get('budget'),
           timeline: data.get('timeline'),
+          gdpr_consent: true,
         }),
       });
 

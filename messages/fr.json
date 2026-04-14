@@ -77,7 +77,8 @@
     "title": "Collections",
     "explore": "Explorer la collection",
     "works_count": "oeuvres",
-    "no_collections": "Les collections seront bientot disponibles."
+    "no_collections": "Les collections seront bientot disponibles.",
+    "uncategorized": "Sans collection"
   },
   "collect": {
     "title": "Collectionner",

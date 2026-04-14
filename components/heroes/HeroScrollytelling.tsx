@@ -8,7 +8,7 @@
 
 type Props = {
   artistName: string;
-  birthYear: string;
+  birthYear?: string;
 };
 
 export function HeroScrollytelling({ artistName, birthYear }: Props) {
@@ -22,10 +22,12 @@ export function HeroScrollytelling({ artistName, birthYear }: Props) {
       >
         {artistName}
       </h1>
-      <p className="mt-6 text-lg md:text-xl text-[var(--accent)] tracking-[0.2em]"
-         style={{ fontFamily: 'var(--font-serif)' }}>
-        {birthYear} — {currentYear}
-      </p>
+      {birthYear && (
+        <p className="mt-6 text-lg md:text-xl text-[var(--accent)] tracking-[0.2em]"
+           style={{ fontFamily: 'var(--font-serif)' }}>
+          {birthYear} — {currentYear}
+        </p>
+      )}
     </section>
   );
 }

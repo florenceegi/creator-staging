@@ -15,6 +15,7 @@ const commissionSchema = z.object({
   description: z.string().min(1).max(10000),
   budget: z.string().max(200).optional(),
   timeline: z.string().max(200).optional(),
+  gdpr_consent: z.literal(true),
 });
 
 export async function POST(request: NextRequest) {

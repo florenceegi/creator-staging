@@ -66,6 +66,7 @@ export function ContactForm({ labels }: Props) {
           email: data.get('email'),
           subject: data.get('subject'),
           message: data.get('message'),
+          gdpr_consent: true,
         }),
       });
 

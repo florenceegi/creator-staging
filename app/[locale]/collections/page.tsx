@@ -51,7 +51,7 @@ export default async function CollectionsPage({ params }: Props) {
   // Group artworks by collection
   const collectionsMap = new Map<string, CollectionGroup>();
   for (const artwork of allArtworks) {
-    const name = artwork.collection?.name || 'Uncategorized';
+    const name = artwork.collection?.name || t('uncategorized');
     if (!collectionsMap.has(name)) {
       collectionsMap.set(name, {
         name,
@@ -63,7 +63,7 @@ export default async function CollectionsPage({ params }: Props) {
   }
 
   const collections = Array.from(collectionsMap.values()).filter(
-    (c) => c.name !== 'Uncategorized'
+    (c) => c.name !== t('uncategorized')
   );
 
   return (

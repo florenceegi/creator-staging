@@ -77,7 +77,8 @@
     "title": "Collections",
     "explore": "Explore the collection",
     "works_count": "works",
-    "no_collections": "Collections will be available soon."
+    "no_collections": "Collections will be available soon.",
+    "uncategorized": "Uncategorized"
   },
   "collect": {
     "title": "Collect",
