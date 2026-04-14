@@ -93,9 +93,10 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
     window.location.href = `/api/${type}?${type.charAt(0)}=${value}&redirect=${encodeURIComponent(path)}`;
   }, [path]);
 
-  // Only render in configurator mode for authenticated users
-  if (siteMode !== 'configurator') return null;
-  if (isLoading || !isAuthenticated) return null;
+  // In configurator mode: always visible (staging/demo)
+  // In production mode: only for authenticated creators
+  if (siteMode === 'production' && (isLoading || !isAuthenticated)) return null;
+  if (siteMode !== 'configurator' && siteMode !== 'production') return null;
 
   const activeColor = TEMPLATE_COLORS[currentVariant] || '#c8a97e';
 
