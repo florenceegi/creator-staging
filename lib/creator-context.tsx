@@ -38,14 +38,12 @@ export function useCreator() {
 interface CreatorProviderProps {
   children: ReactNode;
   siteMode: SiteMode;
-  fallbackArtistId: string;
   fallbackArtistName: string;
 }
 
 export function CreatorProvider({
   children,
   siteMode,
-  fallbackArtistId,
   fallbackArtistName,
 }: CreatorProviderProps) {
   const [creator, setCreator] = useState<AuthCreator | null>(null);
@@ -64,7 +62,7 @@ export function CreatorProvider({
     loadCreator();
   }, [siteMode]);
 
-  const artistId = creator?.id ?? (fallbackArtistId ? Number(fallbackArtistId) : null);
+  const artistId = creator?.id ?? null;
   const artistName = creator?.display_name || fallbackArtistName;
 
   return (

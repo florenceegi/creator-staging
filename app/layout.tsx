@@ -68,7 +68,6 @@ export const metadata: Metadata = {
 };
 
 const SITE_MODE = (process.env.SITE_MODE || 'configurator') as 'configurator' | 'production';
-const FALLBACK_ARTIST_ID = process.env.NEXT_PUBLIC_ARTIST_ID || '';
 const FALLBACK_ARTIST_NAME = process.env.NEXT_PUBLIC_SITE_NAME || '';
 
 export default async function RootLayout({
@@ -95,7 +94,6 @@ export default async function RootLayout({
       <body>
         <CreatorProvider
           siteMode={SITE_MODE}
-          fallbackArtistId={FALLBACK_ARTIST_ID}
           fallbackArtistName={FALLBACK_ARTIST_NAME}
         >
           {children}
