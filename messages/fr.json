@@ -183,5 +183,21 @@
   "gdpr": {
     "privacy_policy": "politique de confidentialité",
     "consent_required": "Le consentement est obligatoire pour envoyer le message"
+  },
+  "configurator": {
+    "toggle": "Configurer",
+    "tab_template": "Modele",
+    "tab_animation": "Animation",
+    "tab_3d": "3D",
+    "tab_site": "Site",
+    "subdomain_title": "Votre domaine",
+    "subdomain_placeholder": "nom-artiste",
+    "subdomain_suffix": ".florenceegi.com",
+    "subdomain_checking": "Verification de la disponibilite...",
+    "subdomain_available": "Disponible",
+    "subdomain_taken": "Deja utilise",
+    "commission_title": "Commandez votre site",
+    "commission_description": "Choisissez modele, animation et scene 3D. FlorenceEGI construira votre site professionnel.",
+    "commission_button": "Demandez votre site"
   }
 }

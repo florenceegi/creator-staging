@@ -14,7 +14,7 @@ import { Footer } from '@/components/layout/Footer';
 import { LenisProvider } from '@/components/layout/LenisProvider';
 import { CustomCursor } from '@/components/ui/CustomCursor';
 import { PageTransition } from '@/components/layout/PageTransition';
-import { VariantSwitcher } from '@/components/ui/VariantSwitcher';
+import { ConfigPanel } from '@/components/configurator/ConfigPanel';
 import { personJsonLd, websiteJsonLd } from '@/lib/seo/jsonld';
 import type { Metadata } from 'next';
 
@@ -65,6 +65,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: 'a11y' });
+  const tCfg = await getTranslations({ locale, namespace: 'configurator' });
 
   return (
     <LenisProvider>
@@ -80,7 +81,26 @@ export default async function LocaleLayout({ children, params }: Props) {
         {t('skip_to_content')}
       </a>
       <CustomCursor />
-      <VariantSwitcher />
+      <ConfigPanel
+        locale={locale}
+        labels={{
+          toggle: tCfg('toggle'),
+          tab_template: tCfg('tab_template'),
+          tab_animation: tCfg('tab_animation'),
+          tab_3d: tCfg('tab_3d'),
+          tab_site: tCfg('tab_site'),
+          subdomain_title: tCfg('subdomain_title'),
+          subdomain_placeholder: tCfg('subdomain_placeholder'),
+          subdomain_suffix: tCfg('subdomain_suffix'),
+          subdomain_checking: tCfg('subdomain_checking'),
+          subdomain_available: tCfg('subdomain_available'),
+          subdomain_taken: tCfg('subdomain_taken'),
+          commission_title: tCfg('commission_title'),
+          commission_description: tCfg('commission_description'),
+          commission_button: tCfg('commission_button'),
+          current_combo: '',
+        }}
+      />
       <Navigation locale={locale} />
       <main id="main-content" role="main" tabIndex={-1} className="flex-1">
         <PageTransition>{children}</PageTransition>

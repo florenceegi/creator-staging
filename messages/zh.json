@@ -183,5 +183,21 @@
   "gdpr": {
     "privacy_policy": "隐私政策",
     "consent_required": "发送消息需要同意"
+  },
+  "configurator": {
+    "toggle": "配置",
+    "tab_template": "模板",
+    "tab_animation": "动画",
+    "tab_3d": "3D",
+    "tab_site": "网站",
+    "subdomain_title": "您的域名",
+    "subdomain_placeholder": "艺术家名称",
+    "subdomain_suffix": ".florenceegi.com",
+    "subdomain_checking": "检查可用性...",
+    "subdomain_available": "可用",
+    "subdomain_taken": "已被使用",
+    "commission_title": "委托您的网站",
+    "commission_description": "选择模板、动画和3D场景。FlorenceEGI将为您建设专业网站。",
+    "commission_button": "申请您的网站"
   }
 }

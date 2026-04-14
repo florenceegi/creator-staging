@@ -183,5 +183,21 @@
   "gdpr": {
     "privacy_policy": "Datenschutzerklärung",
     "consent_required": "Die Zustimmung ist erforderlich, um die Nachricht zu senden"
+  },
+  "configurator": {
+    "toggle": "Konfigurieren",
+    "tab_template": "Vorlage",
+    "tab_animation": "Animation",
+    "tab_3d": "3D",
+    "tab_site": "Seite",
+    "subdomain_title": "Ihre Domain",
+    "subdomain_placeholder": "kuenstler-name",
+    "subdomain_suffix": ".florenceegi.com",
+    "subdomain_checking": "Verfuegbarkeit pruefen...",
+    "subdomain_available": "Verfuegbar",
+    "subdomain_taken": "Bereits vergeben",
+    "commission_title": "Ihre Website beauftragen",
+    "commission_description": "Waehlen Sie Vorlage, Animation und 3D-Szene. FlorenceEGI erstellt Ihre professionelle Website.",
+    "commission_button": "Website anfragen"
   }
 }
