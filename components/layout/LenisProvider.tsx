@@ -8,42 +8,9 @@
 
 'use client';
 
-import { useEffect, useRef } from 'react';
-import Lenis from '@studio-freight/lenis';
-import { useReducedMotion } from '@/lib/hooks/useReducedMotion';
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
-  const lenisRef = useRef<Lenis | null>(null);
-  const prefersReducedMotion = useReducedMotion();
-
-  useEffect(() => {
-    if (prefersReducedMotion) return;
-
-    // Disable on touch devices — Lenis hijacks native mobile scroll
-    const isTouch = window.matchMedia('(pointer: coarse)').matches;
-    if (isTouch) return;
-
-    const lenis = new Lenis({
-      lerp: 0.6,
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-
-    lenisRef.current = lenis;
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-      lenisRef.current = null;
-    };
-  }, [prefersReducedMotion]);
+  // Lenis disabled — native scroll is better UX on all devices
 
   return <>{children}</>;
 }
