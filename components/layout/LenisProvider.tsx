@@ -19,6 +19,10 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (prefersReducedMotion) return;
 
+    // Disable on touch devices — Lenis hijacks native mobile scroll
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    if (isTouch) return;
+
     const lenis = new Lenis({
       lerp: 0.6,
       duration: 1.2,

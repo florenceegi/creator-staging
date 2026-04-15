@@ -101,7 +101,7 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
   const activeColor = TEMPLATE_COLORS[currentVariant] || '#c8a97e';
 
   return (
-    <div className="fixed top-4 right-4 z-[9999]" style={{ fontFamily: 'system-ui, sans-serif' }}>
+    <div className="fixed bottom-20 right-4 z-[9999] sm:bottom-auto sm:top-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
       {/* Toggle */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -124,7 +124,7 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
 
       {/* Panel */}
       {isOpen && (
-        <div className="absolute top-14 right-0 w-[320px] max-h-[85vh] flex flex-col rounded-xl shadow-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-surface)] backdrop-blur-md">
+        <div className="absolute bottom-14 right-0 w-[calc(100vw-2rem)] max-w-[320px] max-h-[70vh] flex flex-col rounded-xl shadow-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-surface)] backdrop-blur-md sm:bottom-auto sm:top-14">
           {/* Tabs */}
           <div className="flex border-b border-[var(--border)] flex-shrink-0">
             {([
