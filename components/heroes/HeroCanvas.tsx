@@ -1,23 +1,27 @@
 /**
  * @package CREATOR-STAGING — HeroCanvas (Template 02)
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-13
- * @purpose Split layout hero — left text, right featured artwork — template 02 Canvas Vivo
+ * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-15
+ * @purpose Split layout hero — left text, right featured artwork from authenticated creator
  */
 
+'use client';
+
 import Image from 'next/image';
-import type { EgiArtwork } from '@/lib/egi/client';
+import { useArtworks } from '@/lib/hooks/use-artworks';
 
 type Props = {
   artistName: string;
   tagline: string;
   scrollLabel: string;
-  featuredWork: EgiArtwork | null;
   locale: string;
 };
 
-export function HeroCanvas({ artistName, tagline, scrollLabel, featuredWork, locale }: Props) {
+export function HeroCanvas({ artistName, tagline, scrollLabel, locale }: Props) {
+  const { artworks, isLoading } = useArtworks();
+  const featuredWork = !isLoading && artworks.length > 0 ? artworks[0] : null;
+
   return (
     <section aria-label="Hero" className="min-h-screen flex items-center">
       <div className="w-full max-w-7xl mx-auto px-6 py-24 grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-center">
@@ -56,6 +60,7 @@ export function HeroCanvas({ artistName, tagline, scrollLabel, featuredWork, loc
                   className="w-full h-auto object-cover"
                   sizes="(max-width: 1024px) 100vw, 40vw"
                   priority
+                  unoptimized
                 />
               </div>
               {featuredWork.title && (
@@ -66,7 +71,11 @@ export function HeroCanvas({ artistName, tagline, scrollLabel, featuredWork, loc
               )}
             </a>
           ) : (
-            <div className="aspect-[3/4] bg-[var(--bg-surface)] border border-[var(--border)]" />
+            !isLoading && (
+              <div className="aspect-[3/4] bg-[var(--bg-surface)] border border-[var(--border)] rounded-lg flex items-center justify-center">
+                <span className="text-[var(--text-muted)] text-sm">No artworks yet</span>
+              </div>
+            )
           )}
         </div>
       </div>

@@ -1,21 +1,25 @@
 /**
  * @package CREATOR-STAGING — HeroBrutalist (Template 06)
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-13
- * @purpose Giant typography hero — name fills viewport — template 06 Brutalist Statement
+ * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-15
+ * @purpose Giant typography hero — name fills viewport — from authenticated creator
  */
 
+'use client';
+
 import Image from 'next/image';
-import type { EgiArtwork } from '@/lib/egi/client';
+import { useArtworks } from '@/lib/hooks/use-artworks';
 
 type Props = {
   artistName: string;
-  featuredWork: EgiArtwork | null;
   locale: string;
 };
 
-export function HeroBrutalist({ artistName, featuredWork, locale }: Props) {
+export function HeroBrutalist({ artistName, locale }: Props) {
+  const { artworks } = useArtworks();
+  const featuredWork = artworks.length > 0 ? artworks[0] : null;
+
   return (
     <>
       {/* Name fills viewport */}
@@ -28,7 +32,7 @@ export function HeroBrutalist({ artistName, featuredWork, locale }: Props) {
         </h1>
       </section>
 
-      {/* First artwork — fullwidth, no padding, no decoration */}
+      {/* First artwork — fullwidth */}
       {featuredWork?.main_image_url && (
         <a href={`/${locale}/works/${featuredWork.id}`} className="block w-full">
           <div className="relative w-full aspect-[16/9] md:aspect-[21/9]">
@@ -39,6 +43,7 @@ export function HeroBrutalist({ artistName, featuredWork, locale }: Props) {
               className="object-cover"
               sizes="100vw"
               priority
+              unoptimized
             />
           </div>
         </a>

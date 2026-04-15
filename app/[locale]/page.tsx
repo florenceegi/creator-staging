@@ -55,7 +55,6 @@ export default async function HomePage({ params }: Props) {
             <HeroOscura
               artistName={artistName}
               tagline={tHero('tagline')}
-              featuredWork={null}
             />
           )}
           {variant === '02' && (
@@ -63,7 +62,6 @@ export default async function HomePage({ params }: Props) {
               artistName={artistName}
               tagline={tHero('tagline')}
               scrollLabel={tWorks('view_on_egi')}
-              featuredWork={null}
               locale={locale}
             />
           )}
@@ -84,7 +82,6 @@ export default async function HomePage({ params }: Props) {
           {variant === '06' && (
             <HeroBrutalist
               artistName={artistName}
-              featuredWork={null}
               locale={locale}
             />
           )}

@@ -1,21 +1,25 @@
 /**
  * @package CREATOR-STAGING — HeroOscura (Template 01)
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-13
- * @purpose Fullscreen featured artwork with gradient overlay — template 01 Galeria Oscura
+ * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-15
+ * @purpose Fullscreen featured artwork with gradient overlay — from authenticated creator
  */
 
+'use client';
+
 import Image from 'next/image';
-import type { EgiArtwork } from '@/lib/egi/client';
+import { useArtworks } from '@/lib/hooks/use-artworks';
 
 type Props = {
   artistName: string;
   tagline: string;
-  featuredWork: EgiArtwork | null;
 };
 
-export function HeroOscura({ artistName, tagline, featuredWork }: Props) {
+export function HeroOscura({ artistName, tagline }: Props) {
+  const { artworks } = useArtworks();
+  const featuredWork = artworks.length > 0 ? artworks[0] : null;
+
   return (
     <section aria-label="Hero" className="relative h-screen w-full overflow-hidden">
       {/* Background image */}
@@ -27,6 +31,7 @@ export function HeroOscura({ artistName, tagline, featuredWork }: Props) {
           className="object-cover"
           priority
           sizes="100vw"
+          unoptimized
         />
       ) : (
         <div className="absolute inset-0 bg-[var(--bg)]" />
@@ -48,7 +53,7 @@ export function HeroOscura({ artistName, tagline, featuredWork }: Props) {
         </p>
       </div>
 
-      {/* Scroll indicator — animated line */}
+      {/* Scroll indicator */}
       <div className="absolute bottom-8 right-8 md:right-16 z-10">
         <div className="w-px h-20 bg-gradient-to-b from-[var(--accent)] to-transparent animate-pulse" />
       </div>
