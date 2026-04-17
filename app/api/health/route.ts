@@ -16,7 +16,7 @@ type Check = { status: CheckStatus; code?: number; message?: string };
 
 export async function GET() {
   const checks: Record<string, Check> = {};
-  let healthy = true;
+  const healthy = true;
 
   // --- EGI upstream API (warning only, non bloccante) ---
   const egiUrl = process.env.NEXT_PUBLIC_EGI_API_URL || 'https://art.florenceegi.com/api';
