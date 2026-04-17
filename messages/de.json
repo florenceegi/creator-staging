@@ -311,7 +311,20 @@
     "scene_none": "Kein 3D",
     "commission_title": "Ihre Website beauftragen",
     "commission_description": "Waehlen Sie Vorlage, Animation und 3D-Szene. FlorenceEGI erstellt Ihre professionelle Website.",
-    "commission_button": "Website anfragen"
+    "commission_button": "Website anfragen",
+    "preferences": "Einstellungen",
+    "theme": "Design",
+    "theme_dark": "Dunkel",
+    "theme_light": "Hell",
+    "theme_ambient": "Ambient",
+    "theme_auto": "Automatisch",
+    "language": "Sprache",
+    "accessibility": "Barrierefreiheit",
+    "a11y_high_contrast": "Hoher Kontrast",
+    "a11y_dyslexia": "Dyslexie-Schrift",
+    "a11y_reduced_motion": "Reduzierte Bewegung",
+    "current_slot": "Aktueller Slot: {slot}",
+    "close": "Schließen"
   },
   "ai": {
     "title": "Der Begleiter",

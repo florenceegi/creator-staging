@@ -311,7 +311,20 @@
     "scene_none": "Sin 3D",
     "commission_title": "Encarga tu sitio",
     "commission_description": "Elige plantilla, animacion y escena 3D. FlorenceEGI construira tu sitio profesional.",
-    "commission_button": "Solicita tu sitio"
+    "commission_button": "Solicita tu sitio",
+    "preferences": "Preferencias",
+    "theme": "Tema",
+    "theme_dark": "Oscuro",
+    "theme_light": "Claro",
+    "theme_ambient": "Ambiente",
+    "theme_auto": "Automático",
+    "language": "Idioma",
+    "accessibility": "Accesibilidad",
+    "a11y_high_contrast": "Alto contraste",
+    "a11y_dyslexia": "Fuente para dislexia",
+    "a11y_reduced_motion": "Movimiento reducido",
+    "current_slot": "Slot actual: {slot}",
+    "close": "Cerrar"
   },
   "ai": {
     "title": "La Guia",

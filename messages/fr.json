@@ -311,7 +311,20 @@
     "scene_none": "Pas de 3D",
     "commission_title": "Commandez votre site",
     "commission_description": "Choisissez modele, animation et scene 3D. FlorenceEGI construira votre site professionnel.",
-    "commission_button": "Demandez votre site"
+    "commission_button": "Demandez votre site",
+    "preferences": "Préférences",
+    "theme": "Thème",
+    "theme_dark": "Sombre",
+    "theme_light": "Clair",
+    "theme_ambient": "Ambiance",
+    "theme_auto": "Auto",
+    "language": "Langue",
+    "accessibility": "Accessibilité",
+    "a11y_high_contrast": "Contraste élevé",
+    "a11y_dyslexia": "Police dyslexie",
+    "a11y_reduced_motion": "Mouvement réduit",
+    "current_slot": "Slot actuel : {slot}",
+    "close": "Fermer"
   },
   "ai": {
     "title": "Le Guide",

@@ -311,7 +311,20 @@
     "scene_none": "Nessuna scena 3D",
     "commission_title": "Commissiona il tuo sito",
     "commission_description": "Scegli template, animazione e scena 3D. FlorenceEGI costruira il tuo sito professionale.",
-    "commission_button": "Richiedi il tuo sito"
+    "commission_button": "Richiedi il tuo sito",
+    "preferences": "Preferenze",
+    "theme": "Tema",
+    "theme_dark": "Scuro",
+    "theme_light": "Chiaro",
+    "theme_ambient": "Ambientale",
+    "theme_auto": "Automatico",
+    "language": "Lingua",
+    "accessibility": "Accessibilità",
+    "a11y_high_contrast": "Contrasto elevato",
+    "a11y_dyslexia": "Font per dislessia",
+    "a11y_reduced_motion": "Movimento ridotto",
+    "current_slot": "Slot corrente: {slot}",
+    "close": "Chiudi"
   },
   "ai": {
     "title": "La Guida",

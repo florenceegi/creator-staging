@@ -311,7 +311,20 @@
     "scene_none": "No 3D",
     "commission_title": "Commission your site",
     "commission_description": "Choose template, animation and 3D scene. FlorenceEGI will build your professional site.",
-    "commission_button": "Request your site"
+    "commission_button": "Request your site",
+    "preferences": "Preferences",
+    "theme": "Theme",
+    "theme_dark": "Dark",
+    "theme_light": "Light",
+    "theme_ambient": "Ambient",
+    "theme_auto": "Auto",
+    "language": "Language",
+    "accessibility": "Accessibility",
+    "a11y_high_contrast": "High contrast",
+    "a11y_dyslexia": "Dyslexia font",
+    "a11y_reduced_motion": "Reduced motion",
+    "current_slot": "Current slot: {slot}",
+    "close": "Close"
   },
   "ai": {
     "title": "The Guide",

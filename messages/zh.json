@@ -311,7 +311,20 @@
     "scene_none": "无3D",
     "commission_title": "委托您的网站",
     "commission_description": "选择模板、动画和3D场景。FlorenceEGI将为您建设专业网站。",
-    "commission_button": "申请您的网站"
+    "commission_button": "申请您的网站",
+    "preferences": "偏好设置",
+    "theme": "主题",
+    "theme_dark": "深色",
+    "theme_light": "浅色",
+    "theme_ambient": "氛围",
+    "theme_auto": "自动",
+    "language": "语言",
+    "accessibility": "无障碍",
+    "a11y_high_contrast": "高对比度",
+    "a11y_dyslexia": "阅读障碍字体",
+    "a11y_reduced_motion": "减少动态效果",
+    "current_slot": "当前场景：{slot}",
+    "close": "关闭"
   },
   "ai": {
     "title": "向导",
