@@ -224,6 +224,8 @@ type MoreMenuProps = {
   className?: string;
   /** Apertura verso l'alto (per navbar fixed-bottom, es. variant 06 Brutalist). */
   openUpward?: boolean;
+  /** Override completo classi del button trigger (per contesti con sfondo colorato, es. Brutalist). */
+  triggerClassName?: string;
 };
 
 export function MoreMenu({
@@ -232,6 +234,7 @@ export function MoreMenu({
   pathname,
   className = '',
   openUpward = false,
+  triggerClassName,
 }: MoreMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -289,7 +292,10 @@ export function MoreMenu({
         aria-haspopup="menu"
         aria-expanded={isOpen}
         aria-controls={menuId}
-        className="inline-flex items-center gap-1 text-sm uppercase tracking-widest text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] rounded"
+        className={
+          triggerClassName ??
+          'inline-flex items-center gap-1 text-sm uppercase tracking-widest text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] rounded'
+        }
       >
         <span>{label}</span>
         <svg

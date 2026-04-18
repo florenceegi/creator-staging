@@ -134,6 +134,7 @@ export function NavigationClient({
                     links={secondaryLinks}
                     pathname={pathname}
                     openUpward
+                    triggerClassName="inline-flex items-center gap-1 text-xs uppercase tracking-wider font-mono text-white/80 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-white/60 rounded"
                   />
                 </li>
               )}
