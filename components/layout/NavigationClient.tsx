@@ -110,13 +110,12 @@ export function NavigationClient({
             >
               {artistName}
             </a>
-            <ul className="hidden lg:flex items-center gap-0" role="list">
-              {primaryLinks.map((link, i) => (
+            <ul className="hidden lg:flex items-center gap-5 xl:gap-6" role="list">
+              {primaryLinks.map((link) => (
                 <li key={link.href} className="flex items-center">
-                  {i > 0 && <span className="text-white/50 mx-1">/</span>}
                   <a
                     href={link.href}
-                    className={`text-xs uppercase tracking-wider font-mono ${
+                    className={`text-xs uppercase tracking-wider font-mono transition-colors ${
                       pathname === link.href
                         ? 'text-white font-bold'
                         : 'text-white/80 hover:text-white'
@@ -128,7 +127,6 @@ export function NavigationClient({
               ))}
               {secondaryLinks.length > 0 && (
                 <li className="flex items-center">
-                  <span className="text-white/50 mx-1">/</span>
                   <MoreMenu
                     label={moreLabel}
                     links={secondaryLinks}
