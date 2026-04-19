@@ -153,6 +153,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           commission_title: tCfg('commission_title'),
           commission_description: tCfg('commission_description'),
           commission_button: tCfg('commission_button'),
+          what_you_get_button: tCfg('what_you_get_button'),
           current_combo: '',
         }}
       />

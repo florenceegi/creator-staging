@@ -70,6 +70,7 @@ interface ConfigPanelProps {
     commission_title: string;
     commission_description: string;
     commission_button: string;
+    what_you_get_button: string;
     current_combo: string;
   };
 }
@@ -244,6 +245,12 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
                     button: labels.commission_button,
                   }}
                 />
+                <a
+                  href={`/${locale}/what-you-get`}
+                  className="block w-full text-center px-4 py-3 border border-[var(--border)] text-[var(--text-primary)] text-xs uppercase tracking-widest font-medium rounded-lg hover:bg-[var(--bg-elevated)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--accent)] focus-visible:outline-offset-2"
+                >
+                  {labels.what_you_get_button}
+                </a>
               </div>
             )}
           </div>
