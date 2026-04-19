@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# lighthouse chrome profile artifacts (WSL Windows path leak)
+lighthouse.*/
+C:\\**
+/C:*
+
