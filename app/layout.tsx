@@ -7,6 +7,7 @@
  */
 
 import type { Metadata, Viewport } from 'next';
+import { headers } from 'next/headers';
 import Script from 'next/script';
 import { Space_Grotesk, Cormorant_Garamond, DM_Sans, DM_Serif_Display, Syne, Libre_Baskerville, Space_Mono } from 'next/font/google';
 import { getVariant } from '@/lib/variant';
@@ -74,7 +75,11 @@ const spaceMono = Space_Mono({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#000000',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
+  ],
+  colorScheme: 'light dark',
 };
 
 export const metadata: Metadata = {
@@ -82,6 +87,13 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL || 'https://creator-staging.florenceegi.com'
   ),
   manifest: '/manifest.webmanifest',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
@@ -100,6 +112,8 @@ export default async function RootLayout({
   const variant = await getVariant();
   const animation = await getAnimation();
   const scene = await getScene();
+  const hdrs = await headers();
+  const isProdDomain = (hdrs.get('host') || '').endsWith('florenceegi.com');
 
   const fontClasses = [
     spaceGrotesk.variable,
@@ -112,7 +126,7 @@ export default async function RootLayout({
   ].join(' ');
 
   return (
-    <html className={fontClasses} data-variant={variant} data-animation={animation} data-scene={scene}>
+    <html lang="en" className={fontClasses} data-variant={variant} data-animation={animation} data-scene={scene}>
       <body>
         <ThemeProvider>
           <A11yProvider>
@@ -133,10 +147,12 @@ export default async function RootLayout({
           </A11yProvider>
         </ThemeProvider>
         <ServiceWorkerRegister />
-        <Script
-          src="https://florenceegi.com/lso-ecosystem.js"
-          strategy="lazyOnload"
-        />
+        {isProdDomain && (
+          <Script
+            src="https://florenceegi.com/lso-ecosystem.js"
+            strategy="lazyOnload"
+          />
+        )}
       </body>
     </html>
   );

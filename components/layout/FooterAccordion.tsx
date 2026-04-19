@@ -24,14 +24,14 @@ export function FooterAccordion({ label, expandLabel, collapseLabel, children }:
 
   return (
     <div className="border-b border-[var(--border)] md:border-b-0">
-      {/* Mobile trigger — hidden on md+ */}
+      {/* Mobile trigger — hidden on md+. Visible text = accessible name (WCAG 2.5.3). */}
       <button
         id={buttonId}
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls={panelId}
-        aria-label={open ? collapseLabel : expandLabel}
+        title={open ? collapseLabel : expandLabel}
         className="md:hidden w-full flex items-center justify-between py-4 text-left text-sm font-medium uppercase tracking-widest text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/60 focus:ring-offset-2 focus:ring-offset-[var(--bg-surface)]"
       >
         <span>{label}</span>

@@ -58,10 +58,10 @@ function dispatchUIEvent(name: string): void {
 export function NavigationUtility({ locale, compact = false, labels }: Props) {
   const { count } = useWishlist();
 
-  const size = compact ? 'w-8 h-8' : 'w-10 h-10';
+  const size = compact ? 'w-8 h-8' : 'w-11 h-11';
   const iconSize = compact ? 'w-4 h-4' : 'w-5 h-5';
   const badgeSize = compact ? 'min-w-[14px] h-[14px] text-[9px]' : 'min-w-[18px] h-[18px] text-[10px]';
-  const gap = compact ? 'gap-1' : 'gap-2';
+  const gap = compact ? 'gap-1' : 'gap-6';
 
   const onSearchClick = useCallback(() => dispatchUIEvent(SEARCH_EVENT), []);
   const onAIClick = useCallback(() => dispatchUIEvent(AI_EVENT), []);

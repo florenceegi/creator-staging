@@ -7,6 +7,7 @@
  */
 
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { Navigation } from '@/components/layout/Navigation';
@@ -17,7 +18,7 @@ import { PageTransition } from '@/components/layout/PageTransition';
 import { ConfigPanel } from '@/components/configurator/ConfigPanel';
 import { A11yPanel } from '@/components/layout/A11yPanel';
 import { CookieConsent } from '@/components/layout/CookieConsent';
-import { personJsonLd, websiteJsonLd } from '@/lib/seo/jsonld';
+import { organizationJsonLd, personJsonLd, websiteJsonLd } from '@/lib/seo/jsonld';
 import type { Metadata } from 'next';
 
 type Props = {
@@ -29,31 +30,62 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
+const OG_LOCALE_MAP: Record<string, string> = {
+  it: 'it_IT',
+  en: 'en_US',
+  fr: 'fr_FR',
+  de: 'de_DE',
+  es: 'es_ES',
+  pt: 'pt_PT',
+  zh: 'zh_CN',
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
 
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Creator Staging';
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://creator-staging.florenceegi.com';
+  const ogLocale = OG_LOCALE_MAP[locale] ?? 'en_US';
+  const title = t('title');
+  const description = t('description');
+  const ogImage = {
+    url: '/og-default.jpg',
+    width: 1200,
+    height: 630,
+    alt: `${siteName} — ${title}`,
+  };
+
+  const languages: Record<string, string> = Object.fromEntries(
+    locales.map((l) => [l, `/${l}`]),
+  );
+  languages['x-default'] = '/';
 
   return {
-    title: {
-      default: t('title'),
-      template: `%s — ${siteName}`,
+    title: { default: title, template: `%s — ${siteName}` },
+    description,
+    alternates: {
+      canonical: `/${locale}`,
+      languages,
     },
-    description: t('description'),
     openGraph: {
       type: 'website',
-      locale: locale === 'zh' ? 'zh_CN' : `${locale}_${locale.toUpperCase()}`,
+      locale: ogLocale,
+      alternateLocale: Object.values(OG_LOCALE_MAP).filter((l) => l !== ogLocale),
       siteName,
+      url: `${siteUrl}/${locale}`,
+      title,
+      description,
+      images: [ogImage],
     },
     twitter: {
       card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage],
     },
-    alternates: {
-      languages: Object.fromEntries(
-        locales.map((l) => [l, `/${l}`])
-      ),
-    },
+    robots: { index: true, follow: true, 'max-image-preview': 'large' },
   };
 }
 
@@ -66,6 +98,10 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   setRequestLocale(locale);
 
+  const hdrs = await headers();
+  const host = hdrs.get('host') || '';
+  const isProdDomain = host.endsWith('florenceegi.com');
+
   const t = await getTranslations({ locale, namespace: 'a11y' });
   const tCfg = await getTranslations({ locale, namespace: 'configurator' });
   const tA11yPanel = await getTranslations({ locale, namespace: 'a11y_panel' });
@@ -75,11 +111,15 @@ export default async function LocaleLayout({ children, params }: Props) {
     <LenisProvider>
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd(locale)) }}
       />
       <a href="#main-content" className="skip-to-content">
         {t('skip_to_content')}
@@ -165,19 +205,25 @@ export default async function LocaleLayout({ children, params }: Props) {
           privacy_policy: tCookie('privacy_policy'),
         }}
       />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `window.FEAnalyticsConfig=${JSON.stringify({
-            siteId: process.env.NEXT_PUBLIC_FE_ANALYTICS_SITE_ID || 'creator-staging',
-            endpoint: process.env.NEXT_PUBLIC_FE_ANALYTICS_ENDPOINT || 'https://hub.florenceegi.com/api/analytics/collect',
-            requireConsent: false,
-          })};`,
-        }}
-      />
-      <script
-        src="https://hub.florenceegi.com/build/tracker/analytics-tracker.js"
-        defer
-      />
+      {isProdDomain && (
+        <>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.FEAnalyticsConfig=${JSON.stringify({
+                siteId: process.env.NEXT_PUBLIC_FE_ANALYTICS_SITE_ID || 'creator-staging',
+                endpoint:
+                  process.env.NEXT_PUBLIC_FE_ANALYTICS_ENDPOINT ||
+                  'https://hub.florenceegi.com/api/analytics/collect',
+                requireConsent: false,
+              })};`,
+            }}
+          />
+          <script
+            src="https://hub.florenceegi.com/build/tracker/analytics-tracker.js"
+            defer
+          />
+        </>
+      )}
     </LenisProvider>
   );
 }

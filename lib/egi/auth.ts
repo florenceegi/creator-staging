@@ -34,10 +34,12 @@ function getCookie(name: string): string | null {
  */
 export async function getAuthenticatedCreator(): Promise<AuthCreator | null> {
   try {
-    const headers: Record<string, string> = { Accept: 'application/json' };
-
-    // Sanctum expects X-XSRF-TOKEN header for stateful requests
     const xsrfToken = getCookie('XSRF-TOKEN');
+    const sessionCookie = getCookie('egi_florence_session');
+
+    if (!xsrfToken && !sessionCookie) return null;
+
+    const headers: Record<string, string> = { Accept: 'application/json' };
     if (xsrfToken) {
       headers['X-XSRF-TOKEN'] = xsrfToken;
     }

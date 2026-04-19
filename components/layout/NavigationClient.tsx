@@ -142,7 +142,8 @@ export function NavigationClient({
               <li className="ml-2 relative">
                 <button
                   onClick={() => setIsLangOpen((v) => !v)}
-                  aria-label={changeLangLabel}
+                  title={changeLangLabel}
+                  aria-haspopup="listbox"
                   aria-expanded={isLangOpen}
                   className="text-xs uppercase font-mono text-white/80 hover:text-white"
                 >
@@ -267,7 +268,8 @@ export function NavigationClient({
             <div className="relative">
               <button
                 onClick={() => setIsLangOpen((v) => !v)}
-                aria-label={changeLangLabel}
+                title={changeLangLabel}
+                aria-haspopup="listbox"
                 aria-expanded={isLangOpen}
                 className="text-[11px] uppercase tracking-[0.2em] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
               >
@@ -385,7 +387,8 @@ export function NavigationClient({
             <li className="relative">
               <button
                 onClick={() => setIsLangOpen((v) => !v)}
-                aria-label={changeLangLabel}
+                title={changeLangLabel}
+                aria-haspopup="listbox"
                 aria-expanded={isLangOpen}
                 className="text-sm uppercase tracking-widest text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
               >
@@ -398,7 +401,7 @@ export function NavigationClient({
           </ul>
 
           {/* Utility bar (desktop right) */}
-          <div className="hidden lg:flex items-center shrink-0">
+          <div className="hidden lg:flex items-center shrink-0 ml-8">
             <NavigationUtility locale={locale} labels={utilityLabels} />
           </div>
 

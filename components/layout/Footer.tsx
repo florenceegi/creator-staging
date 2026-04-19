@@ -120,6 +120,17 @@ export async function Footer({ locale }: Props) {
     const className =
       'text-sm text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/60 focus:ring-offset-2 focus:ring-offset-[var(--bg-surface)] rounded-sm';
 
+    if (item.todo) {
+      return (
+        <span
+          aria-disabled="true"
+          className="text-sm text-[var(--text-muted)] opacity-60 cursor-not-allowed"
+        >
+          {item.label}
+        </span>
+      );
+    }
+
     if (item.external) {
       return (
         <a
@@ -133,9 +144,8 @@ export async function Footer({ locale }: Props) {
       );
     }
     return (
-      <Link href={item.href} className={className}>
+      <Link href={item.href} className={className} prefetch={false}>
         {item.label}
-        {/* TODO: page to be created in FASE 6 */}
       </Link>
     );
   };

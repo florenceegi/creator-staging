@@ -34,7 +34,7 @@ export function HomeFeaturedWorks({ variant, locale, worksLabel, viewOnEgiLabel 
       </h2>
 
       {isPlaceholder && (
-        <div className="text-center mb-8 py-3 px-6 rounded-lg border border-[var(--accent)]/20 bg-[var(--accent)]/5 text-sm text-[var(--text-muted)]">
+        <div className="text-center mb-8 py-3 px-6 rounded-lg border border-[var(--accent)]/20 bg-[var(--accent)]/5 text-sm text-[var(--text-secondary)]">
           Demo images — upload your artworks on FlorenceEGI
         </div>
       )}

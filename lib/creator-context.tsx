@@ -53,6 +53,15 @@ export function CreatorProvider({
     if (siteMode !== 'configurator') return;
 
     async function loadCreator() {
+      const isProdDomain =
+        typeof window !== 'undefined' &&
+        window.location.hostname.endsWith('florenceegi.com');
+
+      if (!isProdDomain) {
+        setIsLoading(false);
+        return;
+      }
+
       await initSanctumCsrf();
       const user = await getAuthenticatedCreator();
       setCreator(user);

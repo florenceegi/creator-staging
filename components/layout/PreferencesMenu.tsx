@@ -197,7 +197,7 @@ export function PreferencesMenu({ locale, labels }: Props): JSX.Element {
         aria-haspopup="dialog"
         aria-expanded={isOpen}
         aria-controls={panelId}
-        className="inline-flex items-center justify-center w-9 h-9 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-colors"
+        className="inline-flex items-center justify-center w-11 h-11 rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-surface)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-colors"
       >
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
           strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">

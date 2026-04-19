@@ -101,7 +101,7 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
   const activeColor = TEMPLATE_COLORS[currentVariant] || '#c8a97e';
 
   return (
-    <div className="fixed bottom-20 right-4 z-[9999] sm:bottom-auto sm:top-4" style={{ fontFamily: 'system-ui, sans-serif' }}>
+    <div className="fixed bottom-20 right-4 z-[9999] sm:bottom-auto sm:top-24" style={{ fontFamily: 'system-ui, sans-serif' }}>
       {/* Toggle */}
       <button
         onClick={() => setIsOpen(!isOpen)}
