@@ -8,10 +8,11 @@
 
 'use client';
 
-import { SECTIONS, FEATURES, TIERS, getTier, type SectionId, type FeatureId, type TierId } from '@/lib/site-catalog';
+import { BASE_PAGES, SECTIONS, FEATURES, TIERS, getTier, type BasePageId, type SectionId, type FeatureId, type TierId } from '@/lib/site-catalog';
 import { useSiteSelection } from '@/lib/hooks/useSiteSelection';
 
 type Labels = {
+  base_heading: string;
   tier_heading: string;
   sections_heading: string;
   features_heading: string;
@@ -23,6 +24,7 @@ type Labels = {
   tier_creator: string;
   tier_studio: string;
   tier_maestro: string;
+  base: Record<BasePageId, { label: string; description: string }>;
   section: Record<SectionId, { label: string; description: string }>;
   feature: Record<FeatureId, { label: string; description: string }>;
 };
@@ -58,6 +60,33 @@ export function SectionsTab({ labels }: Props) {
 
   return (
     <div className="p-3 space-y-5">
+      <section>
+        <h3 className="text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-bold mb-2 flex items-center justify-between">
+          <span>{labels.base_heading}</span>
+          <span className="text-[9px] text-[var(--accent)]">{labels.included}</span>
+        </h3>
+        <div className="space-y-1">
+          {BASE_PAGES.map((b) => {
+            const info = labels.base[b.id];
+            return (
+              <div
+                key={b.id}
+                className="flex items-start gap-2 p-2 rounded-md bg-[var(--bg-elevated)]/60 border border-[var(--border)]/50"
+              >
+                <span className="mt-0.5 w-4 h-4 rounded-sm border border-[var(--accent)] bg-[var(--accent)]/20 flex items-center justify-center text-[10px] text-[var(--accent)]" aria-hidden="true">✓</span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-xs text-[var(--text-primary)] font-medium truncate">{info?.label ?? b.id}</span>
+                    <span className="text-[9px] text-[var(--accent)] whitespace-nowrap">{labels.included}</span>
+                  </div>
+                  <div className="text-[9px] text-[var(--text-muted)] truncate">{info?.description ?? ''}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
       <section>
         <h3 className="text-[10px] uppercase tracking-widest text-[var(--text-muted)] font-bold mb-2">{labels.tier_heading}</h3>
         <div className="grid grid-cols-3 gap-1.5">

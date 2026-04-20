@@ -14,6 +14,8 @@ export const BASE_PAGES = [
   { id: 'contact', route: 'contact' },
 ] as const;
 
+export type BasePageId = typeof BASE_PAGES[number]['id'];
+
 export const SECTIONS = [
   { id: 'collections',   route: 'collections',   price_setup: 300, price_monthly: 0,  schemaType: 'CreativeWorkSeries' },
   { id: 'exhibitions',   route: 'exhibitions',   price_setup: 400, price_monthly: 0,  schemaType: 'ExhibitionEvent' },

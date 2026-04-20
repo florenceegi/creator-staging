@@ -1023,6 +1023,17 @@
     "feature_brand_driven_label": "Individuelle Identität",
     "feature_brand_driven_description": "Eigenes Logo, Palette, Typografie",
     "feature_own_domain_label": "Eigene Domain",
-    "feature_own_domain_description": "kuenstlername.com statt Subdomain"
+    "feature_own_domain_description": "kuenstlername.com statt Subdomain",
+    "base_heading": "Inkludierte Seiten (Basis)",
+    "base_home_label": "Home",
+    "base_home_description": "Hero + Showcase + Haupt-CTAs",
+    "base_bio_label": "Bio",
+    "base_bio_description": "Biografie und Künstleridentität",
+    "base_gallery_label": "Galerie",
+    "base_gallery_description": "Werke via EGI-API mit integriertem Verkauf",
+    "base_statement_label": "Statement",
+    "base_statement_description": "Kurzes künstlerisches Manifest",
+    "base_contact_label": "Kontakt",
+    "base_contact_description": "Kontaktformular mit Rate-Limit"
   }
 }

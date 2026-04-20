@@ -1023,6 +1023,17 @@
     "feature_brand_driven_label": "Custom identity",
     "feature_brand_driven_description": "Dedicated logo, palette and typography",
     "feature_own_domain_label": "Own domain",
-    "feature_own_domain_description": "artistname.com instead of subdomain"
+    "feature_own_domain_description": "artistname.com instead of subdomain",
+    "base_heading": "Pages included (base)",
+    "base_home_label": "Home",
+    "base_home_description": "Hero + showcase + primary CTAs",
+    "base_bio_label": "Bio",
+    "base_bio_description": "Artist biography and identity",
+    "base_gallery_label": "Gallery",
+    "base_gallery_description": "Works from EGI API with built-in sales",
+    "base_statement_label": "Statement",
+    "base_statement_description": "Short artistic manifesto",
+    "base_contact_label": "Contact",
+    "base_contact_description": "Contact form with rate limiting"
   }
 }

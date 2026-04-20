@@ -1023,6 +1023,17 @@
     "feature_brand_driven_label": "Identidade personalizada",
     "feature_brand_driven_description": "Logo, paleta e tipografia dedicados",
     "feature_own_domain_label": "Domínio próprio",
-    "feature_own_domain_description": "nomeartista.com em vez de subdomínio"
+    "feature_own_domain_description": "nomeartista.com em vez de subdomínio",
+    "base_heading": "Páginas incluídas (base)",
+    "base_home_label": "Início",
+    "base_home_description": "Hero + vitrine + CTAs principais",
+    "base_bio_label": "Bio",
+    "base_bio_description": "Biografia e identidade do artista",
+    "base_gallery_label": "Galeria",
+    "base_gallery_description": "Obras via API EGI com venda integrada",
+    "base_statement_label": "Statement",
+    "base_statement_description": "Manifesto artístico breve",
+    "base_contact_label": "Contato",
+    "base_contact_description": "Formulário de contato com rate-limit"
   }
 }

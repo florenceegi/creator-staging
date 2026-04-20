@@ -16,7 +16,7 @@ import { type SceneId } from '@/lib/hooks/useScene';
 import { SubdomainInput } from './SubdomainInput';
 import { CommissionCTA } from './CommissionCTA';
 import { SectionsTab } from './SectionsTab';
-import type { SectionId, FeatureId } from '@/lib/site-catalog';
+import type { SectionId, FeatureId, BasePageId } from '@/lib/site-catalog';
 
 /* ── Catalogue ──────────────────────────────────────────────── */
 
@@ -53,6 +53,7 @@ interface ConfigPanelProps {
     tab_sections: string;
     tab_site: string;
     sections_tab: {
+      base_heading: string;
       tier_heading: string;
       sections_heading: string;
       features_heading: string;
@@ -64,6 +65,7 @@ interface ConfigPanelProps {
       tier_creator: string;
       tier_studio: string;
       tier_maestro: string;
+      base: Record<BasePageId, { label: string; description: string }>;
       section: Record<SectionId, { label: string; description: string }>;
       feature: Record<FeatureId, { label: string; description: string }>;
     };
@@ -143,7 +145,7 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
 
       {/* Panel */}
       {isOpen && (
-        <div className="absolute bottom-14 right-0 w-[calc(100vw-2rem)] max-w-[320px] max-h-[70vh] flex flex-col rounded-xl shadow-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-surface)] backdrop-blur-md sm:bottom-auto sm:top-14">
+        <div className="absolute bottom-14 right-0 w-[calc(100vw-1.5rem)] max-w-[440px] sm:max-w-[520px] max-h-[82vh] flex flex-col rounded-xl shadow-2xl border border-[var(--border)] overflow-hidden bg-[var(--bg-surface)] backdrop-blur-md sm:bottom-auto sm:top-14">
           {/* Tabs */}
           <div className="flex border-b border-[var(--border)] flex-shrink-0">
             {([

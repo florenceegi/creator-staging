@@ -1023,6 +1023,17 @@
     "feature_brand_driven_label": "定制视觉",
     "feature_brand_driven_description": "专属标志、配色与字体",
     "feature_own_domain_label": "独立域名",
-    "feature_own_domain_description": "艺术家名.com,替代子域名"
+    "feature_own_domain_description": "艺术家名.com,替代子域名",
+    "base_heading": "包含页面（基础）",
+    "base_home_label": "首页",
+    "base_home_description": "Hero + 展示 + 主要 CTA",
+    "base_bio_label": "简介",
+    "base_bio_description": "艺术家简介与身份",
+    "base_gallery_label": "画廊",
+    "base_gallery_description": "通过 EGI API 展示作品，内置销售",
+    "base_statement_label": "艺术声明",
+    "base_statement_description": "简短艺术宣言",
+    "base_contact_label": "联系",
+    "base_contact_description": "带速率限制的联系表单"
   }
 }

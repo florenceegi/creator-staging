@@ -1023,6 +1023,17 @@
     "feature_brand_driven_label": "Identité sur mesure",
     "feature_brand_driven_description": "Logo, palette et typographie dédiés",
     "feature_own_domain_label": "Domaine propre",
-    "feature_own_domain_description": "nomartiste.com au lieu du sous-domaine"
+    "feature_own_domain_description": "nomartiste.com au lieu du sous-domaine",
+    "base_heading": "Pages incluses (base)",
+    "base_home_label": "Accueil",
+    "base_home_description": "Hero + vitrine + CTA principaux",
+    "base_bio_label": "Bio",
+    "base_bio_description": "Biographie et identité de l'artiste",
+    "base_gallery_label": "Galerie",
+    "base_gallery_description": "Œuvres via API EGI avec vente intégrée",
+    "base_statement_label": "Statement",
+    "base_statement_description": "Manifeste artistique court",
+    "base_contact_label": "Contact",
+    "base_contact_description": "Formulaire avec rate-limit"
   }
 }

@@ -108,8 +108,12 @@ export default async function LocaleLayout({ children, params }: Props) {
   const tA11yPanel = await getTranslations({ locale, namespace: 'a11y_panel' });
   const tCookie = await getTranslations({ locale, namespace: 'cookie' });
 
+  const basePageIds = ['home', 'bio', 'gallery', 'statement', 'contact'] as const;
   const sectionIds = ['collections', 'exhibitions', 'press', 'cv', 'story_behind', 'process', 'journal', 'live', 'commission'] as const;
   const featureIds = ['newsletter', 'brand_driven', 'own_domain'] as const;
+  const basePagesLabelMap = Object.fromEntries(
+    basePageIds.map((id) => [id, { label: tCat(`base_${id}_label`), description: tCat(`base_${id}_description`) }]),
+  ) as Record<(typeof basePageIds)[number], { label: string; description: string }>;
   const sectionsLabelMap = Object.fromEntries(
     sectionIds.map((id) => [id, { label: tCat(`section_${id}_label`), description: tCat(`section_${id}_description`) }]),
   ) as Record<(typeof sectionIds)[number], { label: string; description: string }>;
@@ -145,6 +149,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           tab_sections: tCfg('tab_sections'),
           tab_site: tCfg('tab_site'),
           sections_tab: {
+            base_heading: tCat('base_heading'),
             tier_heading: tCat('tier_heading'),
             sections_heading: tCat('sections_heading'),
             features_heading: tCat('features_heading'),
@@ -156,6 +161,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             tier_creator: tCat('tier_creator'),
             tier_studio: tCat('tier_studio'),
             tier_maestro: tCat('tier_maestro'),
+            base: basePagesLabelMap,
             section: sectionsLabelMap,
             feature: featuresLabelMap,
           },
