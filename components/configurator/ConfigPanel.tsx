@@ -87,6 +87,8 @@ interface ConfigPanelProps {
     subdomain_checking: string;
     subdomain_available: string;
     subdomain_taken: string;
+    subdomain_reserved: string;
+    subdomain_invalid: string;
     commission_title: string;
     commission_description: string;
     commission_button: string;
@@ -259,6 +261,8 @@ export function ConfigPanel({ locale, labels }: ConfigPanelProps) {
                     checking: labels.subdomain_checking,
                     available: labels.subdomain_available,
                     taken: labels.subdomain_taken,
+                    reserved: labels.subdomain_reserved,
+                    invalid: labels.subdomain_invalid,
                   }}
                 />
                 <CommissionCTA

@@ -518,6 +518,8 @@
     "subdomain_checking": "Verifico disponibilita...",
     "subdomain_available": "Disponibile",
     "subdomain_taken": "Gia in uso",
+    "subdomain_reserved": "Nome riservato, scegline un altro",
+    "subdomain_invalid": "Formato non valido",
     "tpl_01": "Scuro, cinematografico, galleria al centro",
     "tpl_02": "Caldo, organico, effetto pittura",
     "tpl_03": "Profondita spaziale, elementi fluttuanti",

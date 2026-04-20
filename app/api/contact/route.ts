@@ -1,14 +1,20 @@
 /**
  * @package CREATOR-STAGING — Contact API
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-10
- * @purpose Contact form API endpoint with Zod validation and Resend email
+ * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-20
+ * @purpose Contact form API — Zod validation, AWS SES mailer, Upstash rate limit, server-side honeypot, x-real-ip resolver.
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
+import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { rateLimit } from '@/lib/rate-limit';
+import { getClientIp } from '@/lib/get-ip';
+
+const sesClient = new SESClient({
+  region: process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || 'eu-north-1',
+});
 
 const contactSchema = z.object({
   name: z.string().min(1).max(100),
@@ -16,14 +22,15 @@ const contactSchema = z.object({
   subject: z.string().min(1).max(200),
   message: z.string().min(1).max(5000),
   gdpr_consent: z.literal(true),
+  website: z.string().max(0).optional(),
 });
 
 const RATE_LIMIT = 5;
 const RATE_WINDOW = 60_000;
 
 export async function POST(request: NextRequest) {
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
-  if (!rateLimit(`contact:${ip}`, RATE_LIMIT, RATE_WINDOW)) {
+  const ip = getClientIp(request);
+  if (!(await rateLimit(`contact:${ip}`, RATE_LIMIT, RATE_WINDOW))) {
     return NextResponse.json({ success: false, error: 'rate_limit' }, { status: 429 });
   }
 
@@ -31,33 +38,37 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const data = contactSchema.parse(body);
 
-    // Resend integration — will be configured with RESEND_API_KEY
-    const apiKey = process.env.RESEND_API_KEY;
-    const to = process.env.CONTACT_EMAIL_TO || 'info@florenceegi.com';
-
-    if (!apiKey) {
-      console.warn('RESEND_API_KEY not configured — email not sent');
+    if (data.website && data.website.length > 0) {
       return NextResponse.json({ success: true });
     }
 
-    const res = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: `${process.env.NEXT_PUBLIC_SITE_NAME || 'Artist'} Website <noreply@florenceegi.com>`,
-        to: [to],
-        reply_to: data.email,
-        subject: `[Contact] ${data.subject}`,
-        text: `Name: ${data.name}\nEmail: ${data.email}\n\n${data.message}`,
-      }),
-    });
+    const to = process.env.CONTACT_EMAIL_TO;
+    if (!to) {
+      console.error('Contact: CONTACT_EMAIL_TO not configured');
+      return NextResponse.json({ success: false, error: 'misconfigured' }, { status: 500 });
+    }
+    const from = process.env.MAIL_FROM_ADDRESS || 'noreply@florenceegi.com';
+    const fromName = process.env.MAIL_FROM_NAME || 'FlorenceEGI';
 
-    if (!res.ok) {
-      const err = await res.text();
-      console.error('Resend API error:', err);
+    try {
+      await sesClient.send(
+        new SendEmailCommand({
+          Source: `${fromName} <${from}>`,
+          Destination: { ToAddresses: [to] },
+          ReplyToAddresses: [data.email],
+          Message: {
+            Subject: { Data: `[Contact] ${data.subject}`, Charset: 'UTF-8' },
+            Body: {
+              Text: {
+                Data: `Name: ${data.name}\nEmail: ${data.email}\n\n${data.message}`,
+                Charset: 'UTF-8',
+              },
+            },
+          },
+        }),
+      );
+    } catch (sesErr) {
+      console.error('SES SendEmail error (contact):', sesErr);
       return NextResponse.json({ success: false }, { status: 500 });
     }
 

@@ -1,9 +1,9 @@
 /**
  * @package CREATOR-STAGING — Cookie Consent Context
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-17
- * @purpose GDPR/TTDSG cookie consent — 3 categories (essential/analytics/marketing), localStorage persistence, no backend
+ * @version 1.1.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-20
+ * @purpose GDPR/TTDSG cookie consent — 3 categories (essential/analytics/marketing), localStorage persistence + fe_analytics_consent browser cookie for FEAnalytics tracker gating.
  */
 
 'use client';
@@ -107,6 +107,32 @@ function clearRecord(): void {
   }
 }
 
+const ANALYTICS_COOKIE = 'fe_analytics_consent';
+const ANALYTICS_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
+function writeAnalyticsCookie(analytics: boolean): void {
+  if (typeof document === 'undefined') return;
+  try {
+    const host = window.location.hostname;
+    const domain = host.endsWith('.florenceegi.com') || host === 'florenceegi.com' ? '; domain=.florenceegi.com' : '';
+    const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = `${ANALYTICS_COOKIE}=${analytics ? 'true' : 'false'}; path=/; max-age=${ANALYTICS_COOKIE_MAX_AGE}${domain}${secure}; SameSite=Lax`;
+  } catch {
+    // ignore
+  }
+}
+
+function clearAnalyticsCookie(): void {
+  if (typeof document === 'undefined') return;
+  try {
+    const host = window.location.hostname;
+    const domain = host.endsWith('.florenceegi.com') || host === 'florenceegi.com' ? '; domain=.florenceegi.com' : '';
+    document.cookie = `${ANALYTICS_COOKIE}=; path=/; max-age=0${domain}; SameSite=Lax`;
+  } catch {
+    // ignore
+  }
+}
+
 const CookieConsentContext = createContext<CookieConsentContextValue | null>(null);
 
 export function CookieConsentProvider({ children }: { children: ReactNode }): JSX.Element {
@@ -130,6 +156,9 @@ export function CookieConsentProvider({ children }: { children: ReactNode }): JS
     root.dataset.cookieAnalytics = consent.analytics ? 'on' : 'off';
     root.dataset.cookieMarketing = consent.marketing ? 'on' : 'off';
     root.dataset.cookieDecided = hasDecided ? 'on' : 'off';
+    if (hasDecided) {
+      writeAnalyticsCookie(consent.analytics);
+    }
   }, [consent, hasDecided]);
 
   const acceptAll = useCallback(() => {
@@ -173,6 +202,7 @@ export function CookieConsentProvider({ children }: { children: ReactNode }): JS
     setHasDecided(false);
     setShowModal(false);
     clearRecord();
+    clearAnalyticsCookie();
   }, []);
 
   const value = useMemo<CookieConsentContextValue>(

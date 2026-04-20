@@ -518,6 +518,8 @@
     "subdomain_checking": "Checking availability...",
     "subdomain_available": "Available",
     "subdomain_taken": "Already taken",
+    "subdomain_reserved": "Reserved name, pick another",
+    "subdomain_invalid": "Invalid format",
     "tpl_01": "Dark, cinematic, gallery-first",
     "tpl_02": "Warm, organic, paint-like",
     "tpl_03": "Spatial depth, floating elements",

@@ -1,15 +1,16 @@
 /**
  * @package CREATOR-STAGING — Site Commission API
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.2.0 (FlorenceEGI — CREATOR-STAGING)
+ * @version 1.3.0 (FlorenceEGI — CREATOR-STAGING)
  * @date 2026-04-20
- * @purpose Artist commissions personal site to FlorenceEGI WebAgency via AWS SES — includes modular section + feature addons with server-recomputed quote (MiCA-safe, EUR).
+ * @purpose Artist commissions personal site to FlorenceEGI SRL (CREATOR-STAGING organ) via AWS SES — includes modular section + feature addons with server-recomputed quote (MiCA-safe, EUR).
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
 import { rateLimit } from '@/lib/rate-limit';
+import { getClientIp } from '@/lib/get-ip';
 import {
   SECTIONS,
   FEATURES,
@@ -44,6 +45,7 @@ const siteCommissionSchema = z.object({
   sections: z.array(sectionEnum).max(20).optional().default([]),
   features: z.array(featureEnum).max(20).optional().default([]),
   gdpr_consent: z.literal(true),
+  website: z.string().max(0).optional(),
 });
 
 const RATE_LIMIT = 3;
@@ -54,8 +56,8 @@ function fmt(eur: number): string {
 }
 
 export async function POST(request: NextRequest) {
-  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
-  if (!rateLimit(`site-commission:${ip}`, RATE_LIMIT, RATE_WINDOW)) {
+  const ip = getClientIp(request);
+  if (!(await rateLimit(`site-commission:${ip}`, RATE_LIMIT, RATE_WINDOW))) {
     return NextResponse.json({ success: false, error: 'rate_limit' }, { status: 429 });
   }
 
@@ -63,12 +65,20 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const data = siteCommissionSchema.parse(body);
 
+    if (data.website && data.website.length > 0) {
+      return NextResponse.json({ success: true, quote: computeQuote(data.tier as TierId, data.sections as SectionId[], data.features as FeatureId[]) });
+    }
+
     const tier = getTier(data.tier as TierId);
     const quote = computeQuote(data.tier as TierId, data.sections as SectionId[], data.features as FeatureId[]);
 
-    const to = process.env.WEBAGENCY_EMAIL_TO || process.env.COMMISSION_EMAIL_TO || 'fabio@florenceegi.com';
+    const to = process.env.COMMISSION_EMAIL_TO || process.env.COMMISSION_EMAIL_FALLBACK;
+    if (!to) {
+      console.error('Site commission: no recipient configured (COMMISSION_EMAIL_TO / COMMISSION_EMAIL_FALLBACK)');
+      return NextResponse.json({ success: false, error: 'misconfigured' }, { status: 500 });
+    }
     const from = process.env.MAIL_FROM_ADDRESS || 'noreply@florenceegi.com';
-    const fromName = process.env.MAIL_FROM_NAME || 'FlorenceEGI WebAgency';
+    const fromName = process.env.MAIL_FROM_NAME || 'FlorenceEGI';
 
     const lines = [
       `Name: ${data.name}`,

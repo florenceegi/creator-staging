@@ -1,15 +1,28 @@
 /**
  * @package CREATOR-STAGING — Locale Layout
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 1.2.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-17
- * @purpose Locale-aware layout with navigation, footer, skip-to-content, A11yPanel, CookieConsent (GDPR), FEAnalytics
+ * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
+ * @date 2026-04-20
+ * @purpose Locale-aware layout — owns <html lang={locale}>/<body> + providers + fonts + variant attrs. Includes Navigation, Footer, A11yPanel, CookieConsent (GDPR), FEAnalytics with consent sync.
  */
 
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
+import Script from 'next/script';
+import { Space_Grotesk, Cormorant_Garamond, DM_Sans, DM_Serif_Display, Syne, Libre_Baskerville, Space_Mono } from 'next/font/google';
 import { locales, type Locale } from '@/lib/i18n/config';
+import { getVariant } from '@/lib/variant';
+import { getAnimation } from '@/lib/animation';
+import { getScene } from '@/lib/scene3d';
+import { CreatorProvider } from '@/lib/creator-context';
+import { ThemeProvider } from '@/lib/theme-context';
+import { A11yProvider } from '@/lib/a11y-context';
+import { CookieConsentProvider } from '@/lib/cookie-consent-context';
+import { WishlistProvider } from '@/lib/wishlist-context';
+import { QuickViewProvider } from '@/lib/quickview-context';
+import { OverlayManager } from '@/components/overlays/OverlayManager';
+import { ServiceWorkerRegister } from '@/components/layout/ServiceWorkerRegister';
 import { Navigation } from '@/components/layout/Navigation';
 import { Footer } from '@/components/layout/Footer';
 import { LenisProvider } from '@/components/layout/LenisProvider';
@@ -20,6 +33,17 @@ import { A11yPanel } from '@/components/layout/A11yPanel';
 import { CookieConsent } from '@/components/layout/CookieConsent';
 import { organizationJsonLd, personJsonLd, websiteJsonLd } from '@/lib/seo/jsonld';
 import type { Metadata } from 'next';
+
+const spaceGrotesk = Space_Grotesk({ variable: '--font-sans', subsets: ['latin'], display: 'swap' });
+const cormorant = Cormorant_Garamond({ variable: '--font-serif', subsets: ['latin'], weight: ['300', '400', '600', '700'], display: 'swap' });
+const dmSans = DM_Sans({ variable: '--font-dm-sans', subsets: ['latin'], display: 'swap' });
+const dmSerif = DM_Serif_Display({ variable: '--font-dm-serif', subsets: ['latin'], weight: '400', display: 'swap' });
+const syne = Syne({ variable: '--font-syne', subsets: ['latin'], display: 'swap' });
+const libreBaskerville = Libre_Baskerville({ variable: '--font-libre', subsets: ['latin'], weight: ['400', '700'], display: 'swap' });
+const spaceMono = Space_Mono({ variable: '--font-mono', subsets: ['latin'], weight: ['400', '700'], display: 'swap' });
+
+const SITE_MODE = (process.env.SITE_MODE || 'configurator') as 'configurator' | 'production';
+const FALLBACK_ARTIST_NAME = process.env.NEXT_PUBLIC_SITE_NAME || '';
 
 type Props = {
   children: React.ReactNode;
@@ -98,9 +122,23 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   setRequestLocale(locale);
 
+  const variant = await getVariant();
+  const animation = await getAnimation();
+  const scene = await getScene();
+
   const hdrs = await headers();
   const host = hdrs.get('host') || '';
   const isProdDomain = host.endsWith('florenceegi.com');
+
+  const fontClasses = [
+    spaceGrotesk.variable,
+    cormorant.variable,
+    dmSans.variable,
+    dmSerif.variable,
+    syne.variable,
+    libreBaskerville.variable,
+    spaceMono.variable,
+  ].join(' ');
 
   const t = await getTranslations({ locale, namespace: 'a11y' });
   const tCfg = await getTranslations({ locale, namespace: 'configurator' });
@@ -122,141 +160,169 @@ export default async function LocaleLayout({ children, params }: Props) {
   ) as Record<(typeof featureIds)[number], { label: string; description: string }>;
 
   return (
-    <LenisProvider>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd(locale)) }}
-      />
-      <a href="#main-content" className="skip-to-content">
-        {t('skip_to_content')}
-      </a>
-      <CustomCursor />
-      <ConfigPanel
-        locale={locale}
-        labels={{
-          toggle: tCfg('toggle'),
-          tab_template: tCfg('tab_template'),
-          tab_animation: tCfg('tab_animation'),
-          tab_3d: tCfg('tab_3d'),
-          tab_sections: tCfg('tab_sections'),
-          tab_site: tCfg('tab_site'),
-          sections_tab: {
-            base_heading: tCat('base_heading'),
-            tier_heading: tCat('tier_heading'),
-            sections_heading: tCat('sections_heading'),
-            features_heading: tCat('features_heading'),
-            total_setup: tCat('total_setup'),
-            total_monthly: tCat('total_monthly'),
-            included: tCat('included'),
-            setup_from: tCat('setup_from'),
-            monthly_from: tCat('monthly_from'),
-            tier_creator: tCat('tier_creator'),
-            tier_studio: tCat('tier_studio'),
-            tier_maestro: tCat('tier_maestro'),
-            base: basePagesLabelMap,
-            section: sectionsLabelMap,
-            feature: featuresLabelMap,
-          },
-          tpl_01: tCfg('tpl_01'), tpl_02: tCfg('tpl_02'), tpl_03: tCfg('tpl_03'),
-          tpl_04: tCfg('tpl_04'), tpl_05: tCfg('tpl_05'), tpl_06: tCfg('tpl_06'),
-          anim_minimal: tCfg('anim_minimal'), anim_cinematic: tCfg('anim_cinematic'),
-          anim_energetic: tCfg('anim_energetic'), anim_editorial: tCfg('anim_editorial'),
-          anim_fluid: tCfg('anim_fluid'), anim_none: tCfg('anim_none'),
-          scene_particles: tCfg('scene_particles'), scene_morph_sphere: tCfg('scene_morph_sphere'),
-          scene_wave_grid: tCfg('scene_wave_grid'), scene_floating_gallery: tCfg('scene_floating_gallery'),
-          scene_ribbon_flow: tCfg('scene_ribbon_flow'), scene_crystal: tCfg('scene_crystal'),
-          scene_noise_terrain: tCfg('scene_noise_terrain'), scene_aurora: tCfg('scene_aurora'),
-          scene_dot_sphere: tCfg('scene_dot_sphere'), scene_smoke: tCfg('scene_smoke'),
-          scene_none: tCfg('scene_none'),
-          subdomain_title: tCfg('subdomain_title'),
-          subdomain_placeholder: tCfg('subdomain_placeholder'),
-          subdomain_suffix: tCfg('subdomain_suffix'),
-          subdomain_checking: tCfg('subdomain_checking'),
-          subdomain_available: tCfg('subdomain_available'),
-          subdomain_taken: tCfg('subdomain_taken'),
-          commission_title: tCfg('commission_title'),
-          commission_description: tCfg('commission_description'),
-          commission_button: tCfg('commission_button'),
-          what_you_get_button: tCfg('what_you_get_button'),
-          current_combo: '',
-        }}
-      />
-      <Navigation locale={locale} />
-      <main id="main-content" role="main" tabIndex={-1} className="flex-1">
-        <PageTransition>{children}</PageTransition>
-      </main>
-      <Footer locale={locale} />
-      <A11yPanel
-        labels={{
-          title: tA11yPanel('title'),
-          trigger: tA11yPanel('trigger'),
-          close: tA11yPanel('close'),
-          font_size: tA11yPanel('font_size'),
-          font_normal: tA11yPanel('font_normal'),
-          font_large: tA11yPanel('font_large'),
-          font_xlarge: tA11yPanel('font_xlarge'),
-          contrast: tA11yPanel('contrast'),
-          contrast_normal: tA11yPanel('contrast_normal'),
-          contrast_high: tA11yPanel('contrast_high'),
-          motion: tA11yPanel('motion'),
-          motion_system: tA11yPanel('motion_system'),
-          motion_on: tA11yPanel('motion_on'),
-          motion_off: tA11yPanel('motion_off'),
-          dyslexia: tA11yPanel('dyslexia'),
-          dyslexia_off: tA11yPanel('dyslexia_off'),
-          dyslexia_on: tA11yPanel('dyslexia_on'),
-          reset: tA11yPanel('reset'),
-        }}
-      />
-      <CookieConsent
-        privacyHref={`/${locale}/privacy`}
-        labels={{
-          banner_title: tCookie('banner_title'),
-          banner_description: tCookie('banner_description'),
-          accept_all: tCookie('accept_all'),
-          reject_non_essential: tCookie('reject_non_essential'),
-          customize: tCookie('customize'),
-          modal_title: tCookie('modal_title'),
-          modal_description: tCookie('modal_description'),
-          category_essential_title: tCookie('category_essential_title'),
-          category_essential_description: tCookie('category_essential_description'),
-          category_analytics_title: tCookie('category_analytics_title'),
-          category_analytics_description: tCookie('category_analytics_description'),
-          category_marketing_title: tCookie('category_marketing_title'),
-          category_marketing_description: tCookie('category_marketing_description'),
-          save_preferences: tCookie('save_preferences'),
-          close: tCookie('close'),
-          always_on: tCookie('always_on'),
-          privacy_policy: tCookie('privacy_policy'),
-        }}
-      />
-      {isProdDomain && (
-        <>
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `window.FEAnalyticsConfig=${JSON.stringify({
-                siteId: process.env.NEXT_PUBLIC_FE_ANALYTICS_SITE_ID || 'creator-staging',
-                endpoint:
-                  process.env.NEXT_PUBLIC_FE_ANALYTICS_ENDPOINT ||
-                  'https://hub.florenceegi.com/api/analytics/collect',
-                requireConsent: false,
-              })};`,
-            }}
-          />
-          <script
-            src="https://hub.florenceegi.com/build/tracker/analytics-tracker.js"
-            defer
-          />
-        </>
-      )}
-    </LenisProvider>
+    <html lang={locale} className={fontClasses} data-variant={variant} data-animation={animation} data-scene={scene}>
+      <body>
+        <ThemeProvider>
+          <A11yProvider>
+            <CookieConsentProvider>
+              <WishlistProvider>
+                <QuickViewProvider>
+                  <CreatorProvider
+                    siteMode={SITE_MODE}
+                    fallbackArtistName={FALLBACK_ARTIST_NAME}
+                  >
+                    <LenisProvider>
+                      <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd()) }}
+                      />
+                      <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
+                      />
+                      <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd(locale)) }}
+                      />
+                      <a href="#main-content" className="skip-to-content">
+                        {t('skip_to_content')}
+                      </a>
+                      <CustomCursor />
+                      <ConfigPanel
+                        locale={locale}
+                        labels={{
+                          toggle: tCfg('toggle'),
+                          tab_template: tCfg('tab_template'),
+                          tab_animation: tCfg('tab_animation'),
+                          tab_3d: tCfg('tab_3d'),
+                          tab_sections: tCfg('tab_sections'),
+                          tab_site: tCfg('tab_site'),
+                          sections_tab: {
+                            base_heading: tCat('base_heading'),
+                            tier_heading: tCat('tier_heading'),
+                            sections_heading: tCat('sections_heading'),
+                            features_heading: tCat('features_heading'),
+                            total_setup: tCat('total_setup'),
+                            total_monthly: tCat('total_monthly'),
+                            included: tCat('included'),
+                            setup_from: tCat('setup_from'),
+                            monthly_from: tCat('monthly_from'),
+                            tier_creator: tCat('tier_creator'),
+                            tier_studio: tCat('tier_studio'),
+                            tier_maestro: tCat('tier_maestro'),
+                            base: basePagesLabelMap,
+                            section: sectionsLabelMap,
+                            feature: featuresLabelMap,
+                          },
+                          tpl_01: tCfg('tpl_01'), tpl_02: tCfg('tpl_02'), tpl_03: tCfg('tpl_03'),
+                          tpl_04: tCfg('tpl_04'), tpl_05: tCfg('tpl_05'), tpl_06: tCfg('tpl_06'),
+                          anim_minimal: tCfg('anim_minimal'), anim_cinematic: tCfg('anim_cinematic'),
+                          anim_energetic: tCfg('anim_energetic'), anim_editorial: tCfg('anim_editorial'),
+                          anim_fluid: tCfg('anim_fluid'), anim_none: tCfg('anim_none'),
+                          scene_particles: tCfg('scene_particles'), scene_morph_sphere: tCfg('scene_morph_sphere'),
+                          scene_wave_grid: tCfg('scene_wave_grid'), scene_floating_gallery: tCfg('scene_floating_gallery'),
+                          scene_ribbon_flow: tCfg('scene_ribbon_flow'), scene_crystal: tCfg('scene_crystal'),
+                          scene_noise_terrain: tCfg('scene_noise_terrain'), scene_aurora: tCfg('scene_aurora'),
+                          scene_dot_sphere: tCfg('scene_dot_sphere'), scene_smoke: tCfg('scene_smoke'),
+                          scene_none: tCfg('scene_none'),
+                          subdomain_title: tCfg('subdomain_title'),
+                          subdomain_placeholder: tCfg('subdomain_placeholder'),
+                          subdomain_suffix: tCfg('subdomain_suffix'),
+                          subdomain_checking: tCfg('subdomain_checking'),
+                          subdomain_available: tCfg('subdomain_available'),
+                          subdomain_taken: tCfg('subdomain_taken'),
+                          subdomain_reserved: tCfg('subdomain_reserved'),
+                          subdomain_invalid: tCfg('subdomain_invalid'),
+                          commission_title: tCfg('commission_title'),
+                          commission_description: tCfg('commission_description'),
+                          commission_button: tCfg('commission_button'),
+                          what_you_get_button: tCfg('what_you_get_button'),
+                          current_combo: '',
+                        }}
+                      />
+                      <Navigation locale={locale} />
+                      <main id="main-content" role="main" tabIndex={-1} className="flex-1">
+                        <PageTransition>{children}</PageTransition>
+                      </main>
+                      <Footer locale={locale} />
+                      <A11yPanel
+                        labels={{
+                          title: tA11yPanel('title'),
+                          trigger: tA11yPanel('trigger'),
+                          close: tA11yPanel('close'),
+                          font_size: tA11yPanel('font_size'),
+                          font_normal: tA11yPanel('font_normal'),
+                          font_large: tA11yPanel('font_large'),
+                          font_xlarge: tA11yPanel('font_xlarge'),
+                          contrast: tA11yPanel('contrast'),
+                          contrast_normal: tA11yPanel('contrast_normal'),
+                          contrast_high: tA11yPanel('contrast_high'),
+                          motion: tA11yPanel('motion'),
+                          motion_system: tA11yPanel('motion_system'),
+                          motion_on: tA11yPanel('motion_on'),
+                          motion_off: tA11yPanel('motion_off'),
+                          dyslexia: tA11yPanel('dyslexia'),
+                          dyslexia_off: tA11yPanel('dyslexia_off'),
+                          dyslexia_on: tA11yPanel('dyslexia_on'),
+                          reset: tA11yPanel('reset'),
+                        }}
+                      />
+                      <CookieConsent
+                        privacyHref={`/${locale}/privacy`}
+                        labels={{
+                          banner_title: tCookie('banner_title'),
+                          banner_description: tCookie('banner_description'),
+                          accept_all: tCookie('accept_all'),
+                          reject_non_essential: tCookie('reject_non_essential'),
+                          customize: tCookie('customize'),
+                          modal_title: tCookie('modal_title'),
+                          modal_description: tCookie('modal_description'),
+                          category_essential_title: tCookie('category_essential_title'),
+                          category_essential_description: tCookie('category_essential_description'),
+                          category_analytics_title: tCookie('category_analytics_title'),
+                          category_analytics_description: tCookie('category_analytics_description'),
+                          category_marketing_title: tCookie('category_marketing_title'),
+                          category_marketing_description: tCookie('category_marketing_description'),
+                          save_preferences: tCookie('save_preferences'),
+                          close: tCookie('close'),
+                          always_on: tCookie('always_on'),
+                          privacy_policy: tCookie('privacy_policy'),
+                        }}
+                      />
+                      <div id="overlay-root" />
+                      <OverlayManager />
+                    </LenisProvider>
+                  </CreatorProvider>
+                </QuickViewProvider>
+              </WishlistProvider>
+            </CookieConsentProvider>
+          </A11yProvider>
+        </ThemeProvider>
+        <ServiceWorkerRegister />
+        {isProdDomain && (
+          <>
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.FEAnalyticsConfig=${JSON.stringify({
+                  siteId: process.env.NEXT_PUBLIC_FE_ANALYTICS_SITE_ID || 'creator-staging',
+                  endpoint:
+                    process.env.NEXT_PUBLIC_FE_ANALYTICS_ENDPOINT ||
+                    'https://hub.florenceegi.com/api/analytics/collect',
+                  requireConsent: true,
+                })};`,
+              }}
+            />
+            <script
+              src="https://hub.florenceegi.com/build/tracker/analytics-tracker.js"
+              defer
+            />
+            <Script
+              src="https://florenceegi.com/lso-ecosystem.js"
+              strategy="lazyOnload"
+            />
+          </>
+        )}
+      </body>
+    </html>
   );
 }

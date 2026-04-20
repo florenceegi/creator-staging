@@ -518,6 +518,8 @@
     "subdomain_checking": "Verfuegbarkeit pruefen...",
     "subdomain_available": "Verfuegbar",
     "subdomain_taken": "Bereits vergeben",
+    "subdomain_reserved": "Reservierter Name, waehle einen anderen",
+    "subdomain_invalid": "Ungueltiges Format",
     "tpl_01": "Dunkel, filmisch, Galerie im Fokus",
     "tpl_02": "Warm, organisch, malerisch",
     "tpl_03": "Raeumliche Tiefe, schwebende Elemente",

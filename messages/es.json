@@ -518,6 +518,8 @@
     "subdomain_checking": "Verificando disponibilidad...",
     "subdomain_available": "Disponible",
     "subdomain_taken": "Ya en uso",
+    "subdomain_reserved": "Nombre reservado, elige otro",
+    "subdomain_invalid": "Formato no valido",
     "tpl_01": "Oscuro, cinematografico, galeria primero",
     "tpl_02": "Calido, organico, efecto pintura",
     "tpl_03": "Profundidad espacial, elementos flotantes",
