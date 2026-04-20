@@ -27,7 +27,7 @@ export function CommissionCTA({ labels, locale }: CommissionCTAProps) {
         {labels.description}
       </p>
       <a
-        href={`/${locale}/commission`}
+        href={`/${locale}/get-my-site`}
         className="block w-full text-center px-4 py-3 bg-[var(--accent)] text-[var(--bg)] text-sm uppercase tracking-widest font-medium rounded-lg hover:opacity-90 transition-opacity"
       >
         {labels.button}

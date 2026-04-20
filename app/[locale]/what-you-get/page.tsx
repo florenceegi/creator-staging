@@ -138,7 +138,7 @@ export default async function WhatYouGetPage({ params }: Props) {
         ctaHeading={t('cta_heading')}
         ctaBody={t('cta_body')}
         ctaButton={t('cta_button')}
-        ctaHref={`/${locale}/commission`}
+        ctaHref={`/${locale}/get-my-site`}
       />
     </DeliveryAnimated>
   );
