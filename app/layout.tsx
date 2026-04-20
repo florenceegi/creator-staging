@@ -6,6 +6,10 @@
  * @purpose Root layout minimale — passthrough. Html/body/providers vivono in [locale]/layout.tsx per supportare lang={locale} dinamico (WCAG 3.1.1 + SEO hreflang).
  */
 
+import './globals.css';
+import './variants.css';
+import './a11y.css';
+import './cookie.css';
 import type { Metadata, Viewport } from 'next';
 
 export const viewport: Viewport = {
