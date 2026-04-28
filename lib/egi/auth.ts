@@ -37,17 +37,39 @@ export async function getAuthenticatedCreator(): Promise<AuthCreator | null> {
     const xsrfToken = getCookie('XSRF-TOKEN');
     const sessionCookie = getCookie('egi_florence_session');
 
-    if (!xsrfToken && !sessionCookie) return null;
+    // M-143 debug: log cookie state
+    console.log('[M-143 auth] cookies:', { xsrfToken: !!xsrfToken, sessionCookie: !!sessionCookie, allCookies: document.cookie.split(';').map(c => c.trim().split('=')[0]) });
+
+    if (!xsrfToken && !sessionCookie) {
+      console.log('[M-143 auth] no cookies found, returning null');
+      return null;
+    }
 
     const headers: Record<string, string> = { Accept: 'application/json' };
     if (xsrfToken) {
       headers['X-XSRF-TOKEN'] = xsrfToken;
     }
 
+    // M-143 debug: also call debug endpoint
+    try {
+      const debugRes = await fetch(`${EGI_BASE_URL}/api/debug-auth`, {
+        credentials: 'include',
+        headers: { Accept: 'application/json' },
+      });
+      if (debugRes.ok) {
+        const debugData = await debugRes.json();
+        console.log('[M-143 debug-auth]', debugData);
+      }
+    } catch (e) {
+      console.log('[M-143 debug-auth error]', e);
+    }
+
     const res = await fetch(`${EGI_BASE_URL}/api/user`, {
       credentials: 'include',
       headers,
     });
+
+    console.log('[M-143 auth] /api/user status:', res.status);
 
     if (!res.ok) return null;
 
