@@ -71,8 +71,6 @@ export default async function ExhibitionsPage({ params }: Props) {
         upcomingHeading={t('upcoming_heading')}
         upcoming={upcoming}
         rsvpLabel={t('rsvp')}
-        detailsLabel={t('details')}
-        mapLabel={t('map')}
         curatorLabel={t('curator_label')}
         institutionalHeading={t('institutional_heading')}
         institutionalSubheading={t('institutional_subheading')}

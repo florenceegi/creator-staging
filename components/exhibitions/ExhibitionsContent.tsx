@@ -48,8 +48,6 @@ type Props = {
   upcomingHeading: string;
   upcoming: Upcoming[];
   rsvpLabel: string;
-  detailsLabel: string;
-  mapLabel: string;
   curatorLabel: string;
   institutionalHeading: string;
   institutionalSubheading: string;
@@ -71,8 +69,6 @@ export function ExhibitionsContent({
   upcomingHeading,
   upcoming,
   rsvpLabel,
-  detailsLabel,
-  mapLabel,
   curatorLabel,
   institutionalHeading,
   institutionalSubheading,
@@ -176,18 +172,6 @@ export function ExhibitionsContent({
                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M13 5l7 7-7 7" />
               </svg>
             </Link>
-            <button
-              type="button"
-              className={`inline-flex items-center gap-2 px-6 py-3 rounded-md border border-[var(--border)] text-[var(--text-secondary)] text-sm tracking-wide hover:text-[var(--text-primary)] hover:border-[var(--text-secondary)] transition-colors ${focusRing}`}
-            >
-              {detailsLabel}
-            </button>
-            <button
-              type="button"
-              className={`inline-flex items-center gap-2 px-6 py-3 rounded-md border border-[var(--border)] text-[var(--text-secondary)] text-sm tracking-wide hover:text-[var(--text-primary)] hover:border-[var(--text-secondary)] transition-colors ${focusRing}`}
-            >
-              {mapLabel}
-            </button>
           </div>
         </section>
       ) : null}

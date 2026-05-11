@@ -38,7 +38,6 @@ export default async function CVPage({ params }: Props) {
       educationLabel={t('education')}
       awardsLabel={t('awards')}
       soloShowsLabel={t('solo_shows')}
-      downloadLabel={t('download')}
     />
   );
 }

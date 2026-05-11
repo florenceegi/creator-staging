@@ -17,7 +17,6 @@ type Props = {
   educationLabel: string;
   awardsLabel: string;
   soloShowsLabel: string;
-  downloadLabel: string;
 };
 
 export function CVContent({
@@ -25,7 +24,6 @@ export function CVContent({
   educationLabel,
   awardsLabel,
   soloShowsLabel,
-  downloadLabel,
 }: Props) {
   const { artistId, artistName, isLoading: authLoading } = useCreator();
   const [displayName, setDisplayName] = useState(artistName);
@@ -128,14 +126,6 @@ export function CVContent({
         )}
       </div>
 
-      <div className="mt-16 pt-12 border-t border-[var(--border)] text-center">
-        <button
-          type="button"
-          className="inline-block px-8 py-3 border border-[var(--accent)] text-[var(--accent)] text-sm uppercase tracking-widest hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-all duration-300 rounded"
-        >
-          {downloadLabel}
-        </button>
-      </div>
     </article>
   );
 }

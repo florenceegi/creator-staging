@@ -54,8 +54,6 @@ type Props = {
   featuredTitle: string;
   featuredExcerpt: string;
   featuredAuthor: string;
-  readOnlineLabel: string;
-  downloadPdfLabel: string;
   reviewsHeading: string;
   reviewsSubheading: string;
   reviews: Review[];
@@ -69,7 +67,6 @@ type Props = {
   kitHeading: string;
   kitBody: string;
   kitAssets: KitAsset[];
-  kitCta: string;
   contactCta: string;
   contactCtaBody: string;
 };
@@ -84,8 +81,6 @@ export function PressContent({
   featuredTitle,
   featuredExcerpt,
   featuredAuthor,
-  readOnlineLabel,
-  downloadPdfLabel,
   reviewsHeading,
   reviewsSubheading,
   reviews,
@@ -99,7 +94,6 @@ export function PressContent({
   kitHeading,
   kitBody,
   kitAssets,
-  kitCta,
   contactCta,
   contactCtaBody,
 }: Props) {
@@ -149,20 +143,6 @@ export function PressContent({
             </blockquote>
             <p className="text-[var(--text-muted)] text-sm">— {featuredAuthor}</p>
           </div>
-          <div className="flex flex-col gap-3 shrink-0">
-            <button
-              type="button"
-              className={`inline-flex justify-center px-8 py-3 bg-[var(--accent)] text-[var(--bg)] text-sm uppercase tracking-[0.25em] rounded hover:opacity-90 transition-opacity ${focusRing}`}
-            >
-              {readOnlineLabel}
-            </button>
-            <button
-              type="button"
-              className={`inline-flex justify-center px-8 py-3 border border-[var(--accent)] text-[var(--accent)] text-sm uppercase tracking-[0.25em] rounded hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-colors ${focusRing}`}
-            >
-              {downloadPdfLabel}
-            </button>
-          </div>
         </div>
       </section>
 
@@ -198,20 +178,6 @@ export function PressContent({
                   <p className="text-[var(--text-muted)] text-xs uppercase tracking-[0.2em]">
                     — {rv.author}
                   </p>
-                </div>
-                <div className="md:col-span-2 md:text-right flex md:flex-col gap-2 md:gap-3">
-                  <button
-                    type="button"
-                    className={`text-sm uppercase tracking-[0.2em] text-[var(--accent)] border-b border-transparent hover:border-[var(--accent)] transition-colors rounded-sm ${focusRing}`}
-                  >
-                    {readOnlineLabel} →
-                  </button>
-                  <button
-                    type="button"
-                    className={`text-sm uppercase tracking-[0.2em] text-[var(--text-secondary)] border-b border-transparent hover:border-[var(--text-primary)] transition-colors rounded-sm ${focusRing}`}
-                  >
-                    {downloadPdfLabel} ↓
-                  </button>
                 </div>
               </div>
             </li>
@@ -251,12 +217,6 @@ export function PressContent({
               </p>
               <div className="flex items-center justify-between">
                 <span className="text-[var(--text-muted)] text-xs">{iv.date}</span>
-                <button
-                  type="button"
-                  className={`text-sm uppercase tracking-[0.2em] text-[var(--accent)] border-b border-transparent hover:border-[var(--accent)] transition-colors rounded-sm ${focusRing}`}
-                >
-                  {readOnlineLabel} →
-                </button>
               </div>
             </li>
           ))}
@@ -291,12 +251,6 @@ export function PressContent({
               <p className="text-[var(--text-secondary)] text-sm mb-6">
                 {essayByLabel}: {cat.essay}
               </p>
-              <button
-                type="button"
-                className={`self-start text-sm uppercase tracking-[0.2em] text-[var(--accent)] border-b border-transparent hover:border-[var(--accent)] transition-colors rounded-sm ${focusRing}`}
-              >
-                {downloadPdfLabel} ↓
-              </button>
             </li>
           ))}
         </ul>
@@ -315,12 +269,6 @@ export function PressContent({
               {kitHeading}
             </h2>
             <p className="text-[var(--text-secondary)] mb-8 leading-relaxed">{kitBody}</p>
-            <button
-              type="button"
-              className={`inline-block px-10 py-4 bg-[var(--accent)] text-[var(--bg)] text-sm uppercase tracking-[0.25em] hover:opacity-90 transition-all duration-300 rounded ${focusRing}`}
-            >
-              {kitCta}
-            </button>
           </div>
           <div className="md:col-span-7">
             <ul className="divide-y divide-[var(--border)]">
@@ -337,13 +285,6 @@ export function PressContent({
                       {asset.format} · {asset.size}
                     </p>
                   </div>
-                  <button
-                    type="button"
-                    aria-label={`${downloadPdfLabel}: ${asset.label}`}
-                    className={`shrink-0 text-sm uppercase tracking-[0.2em] text-[var(--accent)] border-b border-transparent hover:border-[var(--accent)] transition-colors rounded-sm ${focusRing}`}
-                  >
-                    ↓
-                  </button>
                 </li>
               ))}
             </ul>

@@ -36,7 +36,6 @@ type Props = {
   nextUpLabel: string;
   upcomingHeading: string;
   upcoming: Upcoming[];
-  addToCalendarLabel: string;
   rsvpLabel: string;
   pastHeading: string;
   past: Past[];
@@ -55,7 +54,6 @@ export function LiveContent({
   nextUpLabel,
   upcomingHeading,
   upcoming,
-  addToCalendarLabel,
   rsvpLabel,
   pastHeading,
   past,
@@ -147,12 +145,6 @@ export function LiveContent({
               >
                 {rsvpLabel}
               </Link>
-              <button
-                type="button"
-                className={`inline-flex justify-center px-8 py-3 border border-[var(--accent)] text-[var(--accent)] text-sm uppercase tracking-[0.25em] rounded hover:bg-[var(--accent)] hover:text-[var(--bg)] transition-colors ${focusRing}`}
-              >
-                {addToCalendarLabel}
-              </button>
             </div>
           </div>
         </section>

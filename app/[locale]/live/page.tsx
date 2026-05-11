@@ -59,7 +59,6 @@ export default async function LivePage({ params }: Props) {
         nextUpLabel={t('next_up_label')}
         upcomingHeading={t('upcoming_heading')}
         upcoming={upcoming}
-        addToCalendarLabel={t('add_to_calendar')}
         rsvpLabel={t('rsvp')}
         pastHeading={t('past_heading')}
         past={past}

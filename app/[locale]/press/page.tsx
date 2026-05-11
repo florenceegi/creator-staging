@@ -77,8 +77,6 @@ export default async function PressPage({ params }: Props) {
         featuredTitle={t('featured_title')}
         featuredExcerpt={t('featured_excerpt')}
         featuredAuthor={t('featured_author')}
-        readOnlineLabel={t('read_online')}
-        downloadPdfLabel={t('download_pdf')}
         reviewsHeading={t('reviews_heading')}
         reviewsSubheading={t('reviews_subheading')}
         reviews={reviews}
@@ -92,7 +90,6 @@ export default async function PressPage({ params }: Props) {
         kitHeading={t('kit_heading')}
         kitBody={t('kit_body')}
         kitAssets={kitAssets}
-        kitCta={t('kit_cta')}
         contactCta={t('contact_cta')}
         contactCtaBody={t('contact_cta_body')}
       />
