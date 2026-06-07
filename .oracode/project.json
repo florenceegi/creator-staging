@@ -1,0 +1,20 @@
+{
+  "_meta": {
+    "description": "Descrittore progetto Oracode — M-OS3-096 (per-organo)",
+    "version": "1.0.0",
+    "created": "2026-06-07"
+  },
+  "project": "CREATOR-STAGING",
+  "canonical_name": "CREATOR-STAGING",
+  "aliases": [
+    "CREATOR-STAGING",
+    "creator-staging"
+  ],
+  "id_prefix": "M-CREATOR",
+  "level": 3,
+  "instance_root": "/home/fabio/CREATOR-STAGING",
+  "registry_path": "/home/fabio/CREATOR-STAGING/docs/missions/MISSION_REGISTRY.json",
+  "repo_map_path": "/home/fabio/CREATOR-STAGING/docs/missions/REPO_MAP.json",
+  "read_log_path": "/home/fabio/CREATOR-STAGING/audit/MISSION_READ_LOG.jsonl",
+  "bootstrap_index_path": "/home/fabio/CREATOR-STAGING/docs/missions/MISSION_BOOTSTRAP_INDEX.json"
+}
