@@ -1,4 +1,6 @@
-@/home/fabio/NATAN_LOC/CLAUDE_ECOSYSTEM_CORE.md
+@CLAUDE_ORACODE_CORE.md
+@CLAUDE_OS3_MATRIX.md
+@CLAUDE_ECOSYSTEM_CORE.md
 
 # CREATOR-STAGING — Configuratore Sito Creator (Oracode OS3)
 
