@@ -1,10 +1,12 @@
 /**
  * @package CREATOR-STAGING — Footer
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 2.1.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-18
- * @purpose World-class 5-col footer + lso-ecosystem + newsletter + legal microrow.
- *          JSX augmentation per <lso-ecosystem> spostata in types/web-components.d.ts.
+ * @version 2.2.0 (FlorenceEGI — CREATOR-STAGING · M-CREATORSTAGING-ZT)
+ * @date 2026-06-18
+ * @purpose World-class 5-col footer + newsletter + legal microrow.
+ *          v2.2.0 (policy CEO PRIVACY-BY-DESIGN ZERO-TRACKING): rimosso il web component
+ *          <lso-ecosystem> (alimentato dallo script terzo florenceegi.com/lso-ecosystem.js,
+ *          ora eliminato dal layout): nessuno script di terze parti nel footer.
  */
 
 import Link from 'next/link';
@@ -229,9 +231,6 @@ export async function Footer({ locale }: Props) {
       role="contentinfo"
       className="relative border-t border-[var(--border)] bg-[var(--bg-surface)]"
     >
-      {/* LSO Ecosystem Web Component — script loaded in layout.tsx (F2.5) */}
-      <lso-ecosystem current="creator-staging" />
-
       {/* Columns */}
       <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-0 md:gap-y-10">
