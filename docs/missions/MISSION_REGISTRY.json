@@ -203,19 +203,53 @@
       "doc_verified": true,
       "doc_verified_date": "2026-04-20",
       "stats": {
-        "total_commits": 0,
-        "lines_added": 0,
-        "lines_deleted": 0,
-        "lines_net": 0,
-        "lines_touched": 0,
-        "files_touched": 30,
-        "weighted_commits": 0,
-        "cognitive_load": 1,
-        "productivity_index": 0,
-        "tags_breakdown": {},
-        "by_repo_day": [],
-        "commit_hashes": [],
-        "calculated_at": "2026-06-08"
+        "total_commits": 5,
+        "lines_added": 1122,
+        "lines_deleted": 104,
+        "lines_net": 1018,
+        "lines_touched": 1226,
+        "files_touched": 24,
+        "weighted_commits": 4.5,
+        "cognitive_load": 3.02,
+        "productivity_index": 48.6,
+        "tags_breakdown": {
+          "DOC": 1,
+          "FEAT": 3,
+          "CONFIG": 1
+        },
+        "commit_hashes": [
+          "07b1f1822eac120100e9ac3050616e8f71a47ea7",
+          "3deb0766aada2563b471b6cf39be07319762f43d",
+          "5bfce8b2523ff3020a872422d264086ff2412bc9",
+          "a3da343c43b8a7f8838524bb54a9bda8136bc456",
+          "f4b74ea77b12effbec6b36d199f018b99ef6f6e9"
+        ],
+        "by_repo_day": [
+          {
+            "repo": "florenceegi/EGI-DOC",
+            "date": "2026-04-20",
+            "commits": 1,
+            "lines_added": 256,
+            "lines_deleted": 20,
+            "files_touched": 2,
+            "tags": {
+              "DOC": 1
+            }
+          },
+          {
+            "repo": "florenceegi/creator-staging",
+            "date": "2026-04-20",
+            "commits": 4,
+            "lines_added": 866,
+            "lines_deleted": 84,
+            "files_touched": 22,
+            "tags": {
+              "FEAT": 3,
+              "CONFIG": 1
+            }
+          }
+        ],
+        "calculated_at": "2026-06-19"
       },
       "organs": [
         "EGI-DOC",
@@ -236,19 +270,38 @@
       "report_tecnico": "docs/missions/M-088_OS3_AUDIT_HARDENING_CREATOR_STAGING.md",
       "report_esteso": "docs/missions/M-088_OS3_AUDIT_HARDENING_CREATOR_STAGING_FULL.md",
       "stats": {
-        "total_commits": 0,
-        "lines_added": 0,
-        "lines_deleted": 0,
-        "lines_net": 0,
-        "lines_touched": 0,
-        "files_touched": 0,
-        "weighted_commits": 0,
-        "cognitive_load": 1,
-        "productivity_index": 0,
-        "tags_breakdown": {},
-        "by_repo_day": [],
-        "commit_hashes": [],
-        "calculated_at": "2026-06-08"
+        "total_commits": 2,
+        "lines_added": 1255,
+        "lines_deleted": 860,
+        "lines_net": 395,
+        "lines_touched": 2115,
+        "files_touched": 16,
+        "weighted_commits": 2.5,
+        "cognitive_load": 2.93,
+        "productivity_index": 22.0,
+        "tags_breakdown": {
+          "FIX": 1,
+          "FEAT": 1
+        },
+        "commit_hashes": [
+          "04ba2da8de80ab7392bd394e4a26f261a0f68762",
+          "1ec32815165f6351f465aca2bbfd5c1b98a95741"
+        ],
+        "by_repo_day": [
+          {
+            "repo": "florenceegi/creator-staging",
+            "date": "2026-04-20",
+            "commits": 2,
+            "lines_added": 1255,
+            "lines_deleted": 860,
+            "files_touched": 16,
+            "tags": {
+              "FIX": 1,
+              "FEAT": 1
+            }
+          }
+        ],
+        "calculated_at": "2026-06-19"
       },
       "organs": [
         "EGI-DOC",
