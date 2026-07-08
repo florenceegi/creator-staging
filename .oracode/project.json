@@ -27,5 +27,7 @@
   "stats_refresh_cmd": [
     "bash",
     "/home/fabio/EGI-STAT/deploy/push-stats-nexus.sh"
-  ]
+  ],
+  "doc_sync_v3": true,
+  "doc_sync_v3_live": true
 }
