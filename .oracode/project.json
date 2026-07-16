@@ -29,5 +29,7 @@
     "/home/fabio/EGI-STAT/deploy/push-stats-nexus.sh"
   ],
   "doc_sync_v3": true,
-  "doc_sync_v3_live": true
+  "doc_sync_v3_live": true,
+  "role": "organo",
+  "ssot_home": "EGI-DOC"
 }
