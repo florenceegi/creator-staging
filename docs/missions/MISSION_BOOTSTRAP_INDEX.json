@@ -1,0 +1,21 @@
+{
+  "_meta": {
+    "description": "Creato da M-OS3-202: l'organo dichiarava questo indice senza averlo dal giorno della nascita. bin/oracode-bootstrap-proponi --organo /home/fabio/CREATOR-STAGING --json (M-OS3-191, soglie default: presenza 0.50, distinzione 1.50, min-mission 3), eseguito 2026-08-26: NESSUNA proposta (1 mission con letture; tutti i tipi sotto min-mission=3 — un andamento non si legge su cosi' poco). Chiavi = fallback del motore (bin/mission BOOTSTRAP_FALLBACK_TYPES); un secchio vuoto e' onesto, una chiave mancante e' degrado. Secchi da riempire con l'uso.",
+    "version": "1.0.0",
+    "created": "2026-08-26",
+    "author": "Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici (CEO)",
+    "provenance": "M-OS3-202, capacita organo-non-dichiara-indice-che-non-ha (storia-vuota)",
+    "note": "Path relativi a instance_root (bin/mission emitBootstrap r.803-804). Aggiornamento via ratifica CEO; proposte dal retrospective in BOOTSTRAP_DRIFT_LOG.md o da oracode-bootstrap-proponi."
+  },
+  "always_loaded": [],
+  "by_mission_type": {
+    "arch": [],
+    "doc": [],
+    "doc-sync": [],
+    "feature": [],
+    "fix": [],
+    "guard": [],
+    "refactor": []
+  },
+  "by_organ": {}
+}
