@@ -1,15 +1,16 @@
 /**
  * @package CREATOR-STAGING — Root Layout
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 3.4.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-20
+ * @version 3.5.0 (FlorenceEGI — CREATOR-STAGING · M-CREATORSTAGING-ZT)
+ * @date 2026-06-18
  * @purpose Root layout minimale — passthrough. Html/body/providers vivono in [locale]/layout.tsx per supportare lang={locale} dinamico (WCAG 3.1.1 + SEO hreflang).
+ *          v3.5.0 (policy CEO PRIVACY-BY-DESIGN ZERO-TRACKING): rimosso import './cookie.css'
+ *          (banner consenso eliminato — il template non usa cookie di tracking/consenso).
  */
 
 import './globals.css';
 import './variants.css';
 import './a11y.css';
-import './cookie.css';
 import type { Metadata, Viewport } from 'next';
 
 export const viewport: Viewport = {

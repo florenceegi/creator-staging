@@ -55,7 +55,7 @@ React      → React 19
 Animazioni → GSAP 3 (core + ScrollTrigger + Flip) + Splitting.js + Lenis
 i18n       → next-intl v3 — 6 lingue: IT EN FR DE ES ZH
 Styling    → Tailwind CSS v4
-Analytics  → FEAnalytics ecosistema
+Analytics  → NESSUNO — policy CEO PRIVACY-BY-DESIGN ZERO-TRACKING (M-CREATOR-001): no tracker terze parti, no cookie di tracking
 Deploy     → PM2 cluster mode su EC2 (port 3010)
 ```
 

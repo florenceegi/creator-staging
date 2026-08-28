@@ -18,6 +18,23 @@ Regola immutabile: OSZ è verità assoluta. OS3 e OS4 si aggiornano per allinear
 
 ---
 
+## Glossario — i 6 ruoli della gerarchia (decisione CEO 2026-07-08/11)
+
+I ruoli si nominano con PAROLE, mai con numeri di livello:
+- **Paradigma** — le regole, la legge: oracode (MIT).
+- **Softwarehouse** — l'azienda con licenza (es. Florence EGI S.R.L.), SOPRA tutti i clienti. A questo
+  livello vivono le **Librerie LSO** e l'**attuazione del paradigma** (librerie, imbrigliamento, hook — repo os3-matrix).
+- **Libreria LSO** — repo di proprietà della software house, al servizio di tutti i lavori, nessun
+  cliente committente (DeepDebug, Fucina, Cockpit, EGI-STAT, SNC).
+- **Progetto** — un LSO mono-organo (es. Capasso).
+- **Organismo** — un LSO multi-organo (es. FlorenceEGI; repo-centro EGI-DOC).
+- **Organo** — un LSO che appartiene a un Organismo (es. EGI, EGI-HUB).
+
+Regole: nessun termine nuovo senza definizione alla prima occorrenza · MAI rinominare termini
+consolidati senza permesso CEO. Dettaglio: `LSO_NOMENCLATURE_INDEX.md` §0/§1bis. (M-OS3-144 D27)
+
+---
+
 ## REGOLA ZERO — Principio fondante
 
 **Mai dedurre. Mai completare lacune. Se non sai, chiedi.**
@@ -155,7 +172,9 @@ Ogni mission:
   - Ha identificatore univoco progressivo (M-001, M-002, ...)
   - Dichiara scope all'apertura
   - Ha fasi sequenziali: apertura → analisi → piano → esecuzione → chiusura
-  - Produce report alla chiusura
+  - Il REGISTRY è il record alla chiusura (id, scope, date, organi, stats, governance);
+    scheda leggibile generata a richiesta (cockpit / `mission show`). Coppia report
+    non più obbligatoria (M-OS3-112 — potatura: no file-report che driftano). Report opzionale.
   - È integrata con DOC-SYNC (P0-11)
 
 Niente si modifica fuori da una mission aperta.
@@ -187,37 +206,41 @@ Sigillo    — CERTIFICA (hash del report → ancoraggio Algorand + marca tempor
 
 ### Regola di proporzionalità — la difesa scala col rischio
 
-"Dove ha senso" è **regola scritta**, non discrezione: il profilo di difesa è scalato sul livello/rischio.
+"Dove ha senso" è **regola scritta**, non discrezione: il profilo di difesa è scalato sul **rischio R1-R4**
+(R1 vetrina → R4 denaro/PII/blockchain). NB nomenclatura (M-FUC-040): "R" = rischio, "L" = maturità
+(Layer Stack), "T" = tier operativo — vedi LSO_NOMENCLATURE §0.
 
 | Livello / superficie | Banco di Prova (consegna, DeepDebug) | Fortino (runtime) |
 |---|---|---|
-| Sito vetrina statico (L1) | domini applicabili: reverse-security (secrets/headers/deps), perf | Liv. A leggero (secrets, headers, deps, TLS) |
-| App con auth/dati (L2–L3) | + ai-driven (variant analysis) | Liv. A pieno + B (sentinella) |
-| Organo con denaro/PII/blockchain (L3–L4) | tutti i domini applicabili | A + B + C (forense) |
+| Sito vetrina statico (R1) | domini applicabili: reverse-security (secrets/headers/deps), perf | Liv. A leggero (secrets, headers, deps, TLS) |
+| App con auth/dati (R2–R3) | + ai-driven (variant analysis) | Liv. A pieno + B (sentinella) |
+| Organo con denaro/PII/blockchain (R3–R4) | tutti i domini applicabili | A + B + C (forense) |
 | Codice nativo (C/C++/Rust-FFI) | + memory, concurrency | come sopra |
 
 Vincoli invarianti: **triage** (solo domini applicabili, mai "tutti a forza"); **no over-claim** (si attesta
 "controlli superati in data certa", non "sicuro al 100%"); **deterministico dove blocca** (gate su regola
 scritta, mai su opinione di un modello — il passaggio AI è esplorativo); **onestà epistemica** (REGOLA ZERO).
 
-Dettaglio architetturale, piano mission (E1–E6) e dottrina: charter `EGI-DOC/docs/oracode/Egida/00_EGIDA_CHARTER.md`.
+Dettaglio (strumenti, proporzionalità, vincoli): modulo on-demand `oracode/docs/paradigm/modules/EGIDA_ASSE_DIFESA.md`.
+Il charter di fondazione (genesi, piano E1–E6) è esperienza della prima istanza e vive nel suo repo-centro, fuori dal prodotto.
 
 ---
 
-## Trigger Matrix DOC-SYNC
+## Trigger Matrix DOC-SYNC — le categorie si dicono per NOME
 
-Non tutte le modifiche hanno lo stesso impatto. Classifica PRIMA di agire.
+Classifica PRIMA di agire, **per PAROLA** (canone M-FUC-040: i numeri fingono un ordine che per
+metà non c'è). Il numero è alias legacy: `--trigger=architetturale` ≡ `--trigger=3`.
 
-| Tipo | Impatto | DOC-SYNC |
-|------|---------|----------|
-| 1 — Locale | Fix puntuale, output invariato | NO |
-| 2 — Comportamentale | Cambia output, API, behavior visibile | SI |
-| 3 — Architetturale | Nuovo endpoint, model, service | SI + boot context |
-| 4 — Contrattuale | Tocca GDPR, normative, compliance | SI + approvazione CEO PRIMA |
-| 5 — Naming | Rinomina entità del dominio | SI + grep cross-progetto |
-| 6 — Cross-project | Impatta schemi condivisi o altri organi | SI + approvazione CEO |
+| Categoria | Impatto | DOC-SYNC |
+|-----------|---------|----------|
+| **locale** *(1)* | Fix puntuale, output invariato | NO |
+| **comportamentale** *(2)* | Cambia output, API, behavior visibile | SI |
+| **architetturale** *(3)* | Nuovo endpoint, model, service | SI + boot context |
+| **contrattuale** *(4)* | Tocca GDPR, normative, compliance | SI + approvazione CEO PRIMA |
+| **naming** *(5)* | Rinomina entità del dominio | SI + grep cross-progetto |
+| **cross-progetto** *(6)* | Impatta schemi condivisi o altri organi | SI + approvazione CEO |
 
-Dubbio tra tipo 1 e 2 → tratta come 2.
+Dubbio tra «locale» e «comportamentale» → tratta come «comportamentale».
 
 ---
 
@@ -279,7 +302,7 @@ Prima di rispondere o scrivere codice, verifica:
 4. Sto assumendo qualcosa?         SI → DICHIARA e CHIEDI
 5. File legacy?                    SI → piano con approvazione CEO
 6. i18n tutte le lingue target?    NO → STOP (P0-9)
-7. Tipo modifica [1-6]?             ? → classifica con Trigger Matrix
+7. Categoria della modifica?        ? → classifica con la Trigger Matrix (per NOME)
 8. DOC-SYNC fatto?                 NO → non chiudere la task (P0-11)
 9. Info deploy/infra?              SI → verifica dalla fonte (P0-12)
 ```
@@ -461,5 +484,5 @@ Quando un report torna con flag → VERIFICA alla fonte prima di agire.
 ---
 
 *Oracode System — paradigma di sviluppo software AI-native.*
-*Versione template: 1.3.0 — Data: 2026-06-10 (M-FUC-021: layer enforcement Dottrina del Supervisor)*
+*Versione template: 2.2.1 — Data: 2026-08-27 (M-NEXUS-018: il rimando Egida punta al modulo generico del paradigma, non al charter d'istanza — decisione CEO 2026-07-11 confermata 2026-08-27. Storia: v2.2.0 = 2026-07-15 M-OS3-150: Trigger Matrix per NOME — categorie-parola primarie, numeri alias legacy, canone M-FUC-040. Storia: v2.1.0 = M-OS3-144 ripristino integrale pre-dieta + glossario 6 ruoli, commit oracode 646a00b..2b7a7b2)*
 *Licenza: MIT*

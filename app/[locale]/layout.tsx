@@ -1,15 +1,19 @@
 /**
  * @package CREATOR-STAGING — Locale Layout
  * @author Padmin D. Curtis (AI Partner OS3.0) for Fabio Cherici
- * @version 2.0.0 (FlorenceEGI — CREATOR-STAGING)
- * @date 2026-04-20
- * @purpose Locale-aware layout — owns <html lang={locale}>/<body> + providers + fonts + variant attrs. Includes Navigation, Footer, A11yPanel, CookieConsent (GDPR), FEAnalytics with consent sync.
+ * @version 3.0.0 (FlorenceEGI — CREATOR-STAGING · M-CREATORSTAGING-ZT)
+ * @date 2026-06-18
+ * @purpose Locale-aware layout — owns <html lang={locale}>/<body> + providers + fonts + variant attrs.
+ *          Includes Navigation, Footer, A11yPanel. v3.0.0 (policy CEO PRIVACY-BY-DESIGN
+ *          ZERO-TRACKING): rimossi FEAnalytics, lo script lso-ecosystem di terze parti e il
+ *          CookieConsent (banner + provider). Il template (e ogni fork futuro) non carica script
+ *          di terze parti, non impone cookie di consenso e non traccia. Restano i soli script
+ *          inline JSON-LD (SEO, same-page) e il cookie FUNZIONALE del configuratore (lettura
+ *          variant/scene/animation lato server) che NON è tracking.
  */
 
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { headers } from 'next/headers';
 import { notFound } from 'next/navigation';
-import Script from 'next/script';
 import { Space_Grotesk, Cormorant_Garamond, DM_Sans, DM_Serif_Display, Syne, Libre_Baskerville, Space_Mono } from 'next/font/google';
 import { locales, type Locale } from '@/lib/i18n/config';
 import { getVariant } from '@/lib/variant';
@@ -18,7 +22,6 @@ import { getScene } from '@/lib/scene3d';
 import { CreatorProvider } from '@/lib/creator-context';
 import { ThemeProvider } from '@/lib/theme-context';
 import { A11yProvider } from '@/lib/a11y-context';
-import { CookieConsentProvider } from '@/lib/cookie-consent-context';
 import { WishlistProvider } from '@/lib/wishlist-context';
 import { QuickViewProvider } from '@/lib/quickview-context';
 import { OverlayManager } from '@/components/overlays/OverlayManager';
@@ -30,7 +33,6 @@ import { CustomCursor } from '@/components/ui/CustomCursor';
 import { PageTransition } from '@/components/layout/PageTransition';
 import { ConfigPanel } from '@/components/configurator/ConfigPanel';
 import { A11yPanel } from '@/components/layout/A11yPanel';
-import { CookieConsent } from '@/components/layout/CookieConsent';
 import { organizationJsonLd, personJsonLd, websiteJsonLd } from '@/lib/seo/jsonld';
 import type { Metadata } from 'next';
 
@@ -126,10 +128,6 @@ export default async function LocaleLayout({ children, params }: Props) {
   const animation = await getAnimation();
   const scene = await getScene();
 
-  const hdrs = await headers();
-  const host = hdrs.get('host') || '';
-  const isProdDomain = host.endsWith('florenceegi.com');
-
   const fontClasses = [
     spaceGrotesk.variable,
     cormorant.variable,
@@ -144,7 +142,6 @@ export default async function LocaleLayout({ children, params }: Props) {
   const tCfg = await getTranslations({ locale, namespace: 'configurator' });
   const tCat = await getTranslations({ locale, namespace: 'site_catalog' });
   const tA11yPanel = await getTranslations({ locale, namespace: 'a11y_panel' });
-  const tCookie = await getTranslations({ locale, namespace: 'cookie' });
 
   const basePageIds = ['home', 'bio', 'gallery', 'statement', 'contact'] as const;
   const sectionIds = ['collections', 'exhibitions', 'press', 'cv', 'story_behind', 'process', 'journal', 'live', 'commission'] as const;
@@ -164,9 +161,8 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body>
         <ThemeProvider>
           <A11yProvider>
-            <CookieConsentProvider>
-              <WishlistProvider>
-                <QuickViewProvider>
+            <WishlistProvider>
+              <QuickViewProvider>
                   <CreatorProvider
                     siteMode={SITE_MODE}
                     fallbackArtistName={FALLBACK_ARTIST_NAME}
@@ -267,61 +263,15 @@ export default async function LocaleLayout({ children, params }: Props) {
                           reset: tA11yPanel('reset'),
                         }}
                       />
-                      <CookieConsent
-                        privacyHref={`/${locale}/privacy`}
-                        labels={{
-                          banner_title: tCookie('banner_title'),
-                          banner_description: tCookie('banner_description'),
-                          accept_all: tCookie('accept_all'),
-                          reject_non_essential: tCookie('reject_non_essential'),
-                          customize: tCookie('customize'),
-                          modal_title: tCookie('modal_title'),
-                          modal_description: tCookie('modal_description'),
-                          category_essential_title: tCookie('category_essential_title'),
-                          category_essential_description: tCookie('category_essential_description'),
-                          category_analytics_title: tCookie('category_analytics_title'),
-                          category_analytics_description: tCookie('category_analytics_description'),
-                          category_marketing_title: tCookie('category_marketing_title'),
-                          category_marketing_description: tCookie('category_marketing_description'),
-                          save_preferences: tCookie('save_preferences'),
-                          close: tCookie('close'),
-                          always_on: tCookie('always_on'),
-                          privacy_policy: tCookie('privacy_policy'),
-                        }}
-                      />
                       <div id="overlay-root" />
                       <OverlayManager />
                     </LenisProvider>
                   </CreatorProvider>
                 </QuickViewProvider>
               </WishlistProvider>
-            </CookieConsentProvider>
           </A11yProvider>
         </ThemeProvider>
         <ServiceWorkerRegister />
-        {isProdDomain && (
-          <>
-            <script
-              dangerouslySetInnerHTML={{
-                __html: `window.FEAnalyticsConfig=${JSON.stringify({
-                  siteId: process.env.NEXT_PUBLIC_FE_ANALYTICS_SITE_ID || 'creator-staging',
-                  endpoint:
-                    process.env.NEXT_PUBLIC_FE_ANALYTICS_ENDPOINT ||
-                    'https://hub.florenceegi.com/api/analytics/collect',
-                  requireConsent: true,
-                })};`,
-              }}
-            />
-            <script
-              src="https://hub.florenceegi.com/build/tracker/analytics-tracker.js"
-              defer
-            />
-            <Script
-              src="https://florenceegi.com/lso-ecosystem.js"
-              strategy="lazyOnload"
-            />
-          </>
-        )}
       </body>
     </html>
   );
